@@ -14,29 +14,29 @@ class Arcana{
         return (Name + "(" + Number + ")");
     }
 
-    Arcana Null = new Arcana("None", "-1", -1);
+    static Arcana Null = new Arcana("None", "-1", -1);
     static Arcana Fool = new Arcana("Fool", "0", 0);
-    Arcana Magician = new Arcana("Magician", "I", 1);
-    Arcana Councillor = new Arcana("Councillor", "1", 22);
-    Arcana Priestess = new Arcana("Priestess", "II", 2);
-    Arcana Empress = new Arcana("Empress", "III", 3);
-    Arcana Emperor = new Arcana("Emperor", "IV", 4);
-    Arcana Hierophant = new Arcana("Hierophant", "V", 5);
-    Arcana Lovers = new Arcana("Lovers", "VI", 6);
-    Arcana Chariot = new Arcana("Chariot", "VII", 7);
-    Arcana Justice = new Arcana("Justice", "VIII", 8);
-    Arcana Hermit = new Arcana("Hermit", "IX", 9);
-    Arcana Fortune = new Arcana("Fortune", "X", 10);
-    Arcana Strength = new Arcana("Strength", "XI", 11);
-    Arcana Hanged = new Arcana("Hanged Man", "XII", 12);
-    Arcana Death = new Arcana("Death", "XIII", 13);
-    Arcana Temperance = new Arcana("Temperance", "XIV", 14);
-    Arcana Devil = new Arcana("Devil", "XV", 15);
-    Arcana Tower = new Arcana("Tower", "XVI", 16);
-    Arcana Star = new Arcana("Star", "XVII", 17);
-    Arcana Moon = new Arcana("Moon", "XVIII", 18);
-    Arcana Sun = new Arcana("Sun", "XIX", 19);
-    Arcana Judgement = new Arcana("Judgement", "XX", 20);
-    Arcana World = new Arcana("World", "XXI", 21);
-    Arcana Faith = new Arcana("Faith", "", 23); /*(Maybe)*/
+    static Arcana Magician = new Arcana("Magician", "I", 1);
+    static Arcana Councillor = new Arcana("Councillor", "1", 22);
+    static Arcana Priestess = new Arcana("Priestess", "II", 2);
+    static Arcana Empress = new Arcana("Empress", "III", 3);
+    static Arcana Emperor = new Arcana("Emperor", "IV", 4);
+    static Arcana Hierophant = new Arcana("Hierophant", "V", 5);
+    static Arcana Lovers = new Arcana("Lovers", "VI", 6);
+    static Arcana Chariot = new Arcana("Chariot", "VII", 7);
+    static Arcana Justice = new Arcana("Justice", "VIII", 8);
+    static Arcana Hermit = new Arcana("Hermit", "IX", 9);
+    static Arcana Fortune = new Arcana("Fortune", "X", 10);
+    static Arcana Strength = new Arcana("Strength", "XI", 11);
+    static Arcana Hanged = new Arcana("Hanged Man", "XII", 12);
+    static Arcana Death = new Arcana("Death", "XIII", 13);
+    static Arcana Temperance = new Arcana("Temperance", "XIV", 14);
+    static Arcana Devil = new Arcana("Devil", "XV", 15);
+    static Arcana Tower = new Arcana("Tower", "XVI", 16);
+    static Arcana Star = new Arcana("Star", "XVII", 17);
+    static Arcana Moon = new Arcana("Moon", "XVIII", 18);
+    static Arcana Sun = new Arcana("Sun", "XIX", 19);
+    static Arcana Judgement = new Arcana("Judgement", "XX", 20);
+    static Arcana World = new Arcana("World", "XXI", 21);
+    static Arcana Faith = new Arcana("Faith", "", 23);
 }

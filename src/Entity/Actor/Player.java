@@ -1,6 +1,7 @@
 class Player extends Actor{
-
-    public Player(String Name){
-        super(Name, Arcana.Fool);
+    private String First;
+    private String Last;
+    public Player(String First, String Last){
+        super(First + Last, Arcana.Fool);
     }
 }
