@@ -1,5 +1,4 @@
-import Entity.Entity;
-import Entity.Actor.Actor;
+import Entity.*;
 
 public class Main {
     public static void main(String[] args) {

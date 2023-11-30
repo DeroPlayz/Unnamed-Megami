@@ -1,7 +1,7 @@
 class Arcana{
-    private String Name;
-    private String Number;
-    private int ID;
+    private String Name; public String getName(){return Name;}
+    private String Number; public String getNumber(){return Number;}
+    private int ID; public int getID(){return ID;}
 
     public Arcana(String Name, String Number, int ID){
         this.Name = Name;
@@ -15,7 +15,7 @@ class Arcana{
     }
 
     Arcana Null = new Arcana("None", "-1", -1);
-    Arcana Fool = new Arcana("Fool", "0", 0);
+    static Arcana Fool = new Arcana("Fool", "0", 0);
     Arcana Magician = new Arcana("Magician", "I", 1);
     Arcana Councillor = new Arcana("Councillor", "1", 22);
     Arcana Priestess = new Arcana("Priestess", "II", 2);
