@@ -1,3 +1,6 @@
+package MafLib;
+
+
 import java.util.Scanner;
 
 public class MafLib{

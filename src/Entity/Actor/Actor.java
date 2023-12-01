@@ -11,8 +11,6 @@ public abstract class Actor extends Entity{
     private int Endurance;
     private int Agility;
     private int Luck;
-    private Item.Weapon Weapon;
-    
     /**
      * 01st. Physical<p>
      * 02nd. Fire (Also dictates affinity to Burn.)<p>
