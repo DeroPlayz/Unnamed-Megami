@@ -4,14 +4,8 @@ public class Weapon extends Equipment{
     private int Damage;
     private int Accuracy;
 
-    public Weapon(String Name, int Damage, int Accuracy, double Value, int StrengthMod, int MagicMod, int EnduranceMod, int AgilityMod, int LuckMod) {
-        super(Name, Value, StrengthMod, MagicMod, EnduranceMod, AgilityMod, LuckMod);
-        this.Damage = Damage;
-        this.Accuracy = Accuracy;
-    }
-
     public Weapon(String Name, int Damage, int Accuracy, double Value) {
-        super(Name, Value, 0, 0, 0, 0, 0);
+        super(Name, Value);
         this.Damage = Damage;
         this.Accuracy = Accuracy;
     }
