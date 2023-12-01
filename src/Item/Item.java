@@ -2,7 +2,7 @@ package Item;
 
 import java.util.ArrayList;
 
-import MafLib.MafLib;
+import .MafLib;
 
 abstract public class Item {
     String Name = ""; public void setName(String Name){this.Name = Name;} public String getName(){return Name;}
