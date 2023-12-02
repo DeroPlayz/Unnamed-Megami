@@ -1,4 +1,3 @@
-
 import static Combat.Skill.*;
 import static lib.MafLib.*;
 
