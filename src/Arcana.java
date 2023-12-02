@@ -15,7 +15,6 @@ class Arcana{
         return (Name + "(" + Number + ")");
     }
 
-    static Arcana Null = new Arcana("None", "-1", -1);
     static Arcana Fool = new Arcana("Fool", "0", 0);
     static Arcana Magician = new Arcana("Magician", "I", 1);
     static Arcana Councillor = new Arcana("Councillor", "1", 22);
