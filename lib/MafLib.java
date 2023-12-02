@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class MafLib{
     public static final String RESET = "\033[0m";
+    public static final String CLEARC = "\033[39m";
+    public static final String CLEARF = "\033[22m" + "\033[23m" + "\033[24m" + "\033[27m" + "\033[28" + "\033[29m";
     public static final String BLACK = "\033[30m";
     public static final String RED = "\033[31m";
     public static final String GREEN = "\033[32m"; //Mint Green
@@ -13,11 +15,10 @@ public class MafLib{
     public static final String CYAN = "\033[36m";
     public static final String WHITE = "\033[37m";
     public static final String BOLD = "\033[1m";
-    public static final String UNDERLINE = "\033[4m"; //Doesn't work
-    public static final String BLINK = "\033[5m"; //Doesn't work
-    public static final String STRIKE = "\033[9m"; //Doesn't work
-    public static final String REVIDEO = "\033[7m"; //Doesn't work
-    public static final String NORMINT = "\033[m"; //Doesn't work
+    public static final String UNDERLINE = "\033[4m";
+    public static final String STRIKE = "\033[9m";
+    public static final String INVERT = "\033[7m";
+    public static final String HIDE = "\033[8m";
     
     static Scanner Scan = new Scanner(System.in);
     
