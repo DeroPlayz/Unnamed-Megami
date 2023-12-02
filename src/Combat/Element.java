@@ -1,6 +1,6 @@
 package Combat;
 
-public class Element {
+public class Element{
     private String Name;
     private static int IDc;
     private int ID;
@@ -14,17 +14,17 @@ public class Element {
         IDc++;
     }
     
-    /*Offense Magic.*/{
-        Element Physical = new Element("Physical", true);
-        Element Fire = new Element("Fire", true);
-        Element Ice = new Element("Ice", true);
-        Element Electric = new Element("Electric", true);
-        Element Wind = new Element("Wind", true);
-        Element Bless = new Element("Bless", true);
-        Element Curse = new Element("Curse", true);
-    }
-    /*Not Offense Magic.*/{
-        Element Support = new Element("Support", false);
-        Element Recovery = new Element("Recovery", true);
-    }
+    //Offense Magic.
+        static Element Physical = new Element("Physical", true);
+        static Element Fire = new Element("Fire", true);
+        static Element Ice = new Element("Ice", true);
+        static Element Electric = new Element("Electric", true);
+        static Element Wind = new Element("Wind", true);
+        static Element Bless = new Element("Bless", true);
+        static Element Curse = new Element("Curse", true);
+
+    //Not Offense Magic.
+        static Element Support = new Element("Support", false);
+        static Element Recovery = new Element("Recovery", true);
+
 }
