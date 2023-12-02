@@ -3,6 +3,22 @@ package lib;
 import java.util.Scanner;
 
 public class MafLib{
+    public static final String RESET = "\033[0m";
+    public static final String BLACK = "\033[30m";
+    public static final String RED = "\033[31m";
+    public static final String GREEN = "\033[32m"; //Mint Green
+    public static final String YELLOW = "\033[33m";
+    public static final String BLUE = "\033[34m"; //Dark Blue
+    public static final String MAGENTA = "\033[35m";
+    public static final String CYAN = "\033[36m";
+    public static final String WHITE = "\033[37m";
+    public static final String BOLD = "\033[1m";
+    public static final String UNDERLINE = "\033[4m"; //Doesn't work
+    public static final String BLINK = "\033[5m"; //Doesn't work
+    public static final String STRIKE = "\033[9m"; //Doesn't work
+    public static final String REVIDEO = "\033[7m"; //Doesn't work
+    public static final String NORMINT = "\033[m"; //Doesn't work
+    
     static Scanner Scan = new Scanner(System.in);
     
     public static String askString(String Prompt, Boolean EndOnNewline){
