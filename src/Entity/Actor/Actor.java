@@ -1,16 +1,17 @@
+import Arcanum.Arcana;
 import Entity.Entity;
 
 public abstract class Actor extends Entity{
-    private Arcana Arcana; public Arcana getArcana(){return Arcana;} public void setArcana(Arcana Arcana){this.Arcana = Arcana;}
-    private int HP;
-    private int MaxHP;
-    private int SP;
-    private int MaxSP;
-    private int Strength;
-    private int Magic;
-    private int Endurance;
-    private int Agility;
-    private int Luck;
+    protected Arcana Arcana; public void setArcana(Arcana Arcana){this.Arcana = Arcana;} public Arcana getArcana(){return Arcana;}
+    protected int HP; public void setHP(int HP){this.HP = HP;} public int getHP(){return HP;}
+    protected int MaxHP; public void setMaxHP(int MaxHP){this.MaxHP = MaxHP;} public int getMaxHP(){return MaxHP;}
+    protected int SP; public void setSP(int SP){this.SP = SP;} public int getSP(){return SP;}
+    protected int MaxSP; public void setMaxSP(int MaxSP){this.MaxSP = MaxSP;} public int getMaxSP(){return MaxSP;}
+    protected int Strength; public void setStrength(int Strength){this.Strength = Strength;} public int getStrength(){return Strength;}
+    protected int Magic; public void setMagic(int Magic){this.Magic = Magic;} public int getMagic(){return Magic;}
+    protected int Endurance; public void setEndurance(int Endurance){this.Endurance = Endurance;} public int getEndurance(){return Endurance;}
+    protected int Agility; public void setAgility(int Agility){this.Agility = Agility;} public int getAgility(){return Agility;}
+    protected int Luck; public void setLuck(int Luck){this.Luck = Luck;} public int getLuck(){return Luck;}
     /**
      * 01st. Physical<p>
      * 02nd. Fire (Also dictates affinity to Burn.)<p>
@@ -23,10 +24,16 @@ public abstract class Actor extends Entity{
      * 09th. Sleep<p>
      * 10th. Dizzy<p>
      */
-    private int[] Affinities;
+    private double[] Affinities;
+    private static final double Weak = 1.5;
+    private static final double None = 1;
+    private static final double Resist = 0.5;
+    private static final double Block = 0;
+    private static final double Absorb = -1;
 
     public Actor(String Name, Arcana Arcana){
         super(Name);
+        this.Arcana = Arcana;
     }
 
     @Override
