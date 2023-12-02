@@ -19,6 +19,6 @@ public class Enemy extends Actor {
         Luck = SMEAL[4];
     }
 
-    Enemy Pixie = new Enemy("Pixie", Arcana.Lovers, 15, 15, new int[]{0, 0, 0, 0, 0}, new Skill[]{Dia});
+    Enemy Pixie = new Enemy("Pixie", Arcanum.Arcana.Lovers, 15, 15, new int[]{0, 0, 0, 0, 0}, new Skill[]{Dia});
    
 }
