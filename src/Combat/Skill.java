@@ -3,8 +3,6 @@ package Combat;
 import static Combat.Element.*;
 import static lib.MafLib.*;
 
-import javax.print.attribute.standard.Sides;
-
 public class Skill {
     private String Name;
     private String Description; private int Cost;
