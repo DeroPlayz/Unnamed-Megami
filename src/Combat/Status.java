@@ -17,8 +17,16 @@ public class Status {
         this.DMG = DMG;
     }
 
-    public static Status Normal = new Status("Normal", true, 0);
-    public static Status Sleep = new Status("Sleepy", false, 0);
-    public static Status Stun = new Status("Stunned", false, 3);
+    //Existing
+    public static Status Alive = new Status("Alive", true, 0);
     public static Status Dead = new Status("Dead", false, 0);
+
+    //Elemental
+    public static Status Burn = new Status("Burning", true, 6);
+    public static Status Freeze = new Status("Frozen", false, 0);
+    public static Status Stun = new Status("Stunned", false, 3);
+
+    //Ailing
+    public static Status Sleep = new Status("Sleepy", false, 0);
+    public static Status Dizzy = new Status("Dizzy", true, 0);    
 }
