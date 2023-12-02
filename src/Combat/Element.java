@@ -1,7 +1,7 @@
 package Combat;
 
 public class Element{
-    private String Name;
+    private String Name; public void setName(String Name){this.Name = Name;} public String getName(){return Name;}
     private static int IDc;
     private int ID;
     private boolean isOffense;
@@ -15,16 +15,16 @@ public class Element{
     }
     
     //Offense Magic.
-        static Element Physical = new Element("Physical", true);
-        static Element Fire = new Element("Fire", true);
-        static Element Ice = new Element("Ice", true);
-        static Element Electric = new Element("Electric", true);
-        static Element Wind = new Element("Wind", true);
-        static Element Bless = new Element("Bless", true);
-        static Element Curse = new Element("Curse", true);
+        public static Element Physical = new Element("Physical", true);
+        public static Element Fire = new Element("Fire", true);
+        public static Element Ice = new Element("Ice", true);
+        public static Element Electric = new Element("Electric", true);
+        public static Element Wind = new Element("Wind", true);
+        public static Element Bless = new Element("Bless", true);
+        public static Element Curse = new Element("Curse", true);
 
     //Not Offense Magic.
-        static Element Support = new Element("Support", false);
-        static Element Recovery = new Element("Recovery", true);
+        public static Element Support = new Element("Support", false);
+        public static Element Recovery = new Element("Recovery", true);
 
 }
