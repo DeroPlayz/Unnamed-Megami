@@ -3,6 +3,8 @@ package Combat;
 import static Combat.Element.*;
 import static lib.MafLib.*;
 
+import java.util.ArrayList;
+
 public class Skill {
     private String Name;
     private String Description; private int Cost;
@@ -23,6 +25,7 @@ public class Skill {
         this.Type = Type;
         this.Function = Function;
         this.SingleTarget = SingleTarget;
+        this.Description = Description;
     }
 
     public String toString(){
@@ -34,6 +37,7 @@ public class Skill {
         if(Type.equals(Wind)){s = GREEN;}
         if(Type.equals(Bless)){s = WHITE;}
         if(Type.equals(Curse)){s = BLACK;}
+        if(Type.equals(Support)){s = CYAN;}
 
         s += Name + " (";
         
@@ -41,10 +45,10 @@ public class Skill {
 
         }
         else{
-            s += Cost + " SP)\n" + RESET;
+            s += Cost + " SP)\n";
         }
         
-        s += Description;
+        s += Description + RESET + "\n";
         return s;
     }
 
@@ -135,6 +139,8 @@ public class Skill {
                 public static Skill Sukukaja = new Skill("Sukukaja", Assist, 8, 0, Support, true, "Raise 1 ally's accuracy for 3 turns.");
             //Multi Target
                 public static Skill Matarukaja = new Skill("Matarukaja", Assist, 24, 0, Support, false, "Raise party's attack for 3 turns.");
-                public static Skill Matakukaja = new Skill("Matakukaja", Assist, 24, 0, Support, false, "Raise party's defense for 3 turns.");
-                public static Skill Matukukaja = new Skill("Matukukaja", Assist, 24, 0, Support, false, "Raise party's accuracy for 3 turns.");
+                public static Skill Marakukaja = new Skill("Marakukaja", Assist, 24, 0, Support, false, "Raise party's defense for 3 turns.");
+                public static Skill Masukukaja = new Skill("Masukukaja", Assist, 24, 0, Support, false, "Raise party's accuracy for 3 turns.");
+
+        public static Skill[] SKILLS = {Agi, Agilao, Agidyne, Agibarion, Maragi, Maragion, Maragidyne, Maragibarion, Bufu, Bufula, Bufudyne, Bufubarion, Mabufu, Mabufula, Mabufudyne, Mabufubarion, Zio, Zionga, Ziodyne, Ziobarion, Mazio, Mazionga, Maziodyne, Maziobarion, Garu, Garula, Garudyne, Garubarion, Magaru, Magarula, Magarudyne, Magarubarion, Hama, Hamaon, Hamadyne, Mahama, Mahamaon, Mahamadyne, Mudo, Mudoon, Mudodyne, Mamudo, Mamudoon, Mamudodyne, Dia, Diarama, Diarahan, Media, Mediarama, Mediarahan, Tarukaja, Rakukaja, Sukukaja, Matarukaja, Marakukaja, Masukukaja};
 }

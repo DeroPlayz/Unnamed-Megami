@@ -1,6 +1,6 @@
 package Item;
 
-public class Equipment extends Item{
+abstract public class Equipment extends Item{
     
 
     public Equipment(String Name, double Value) {
