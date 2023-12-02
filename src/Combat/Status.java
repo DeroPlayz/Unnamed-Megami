@@ -2,9 +2,9 @@ package Combat;
 
 
 public class Status {
-    private String Name;
-    private boolean CanAct;
-    private int DMG;
+    private String Name; public void setName(String Name){this.Name = Name;} public String getName(){return Name;}
+    private boolean CanAct; public void setAct(boolean CanAct){this.CanAct = CanAct;} public boolean getAct(){return CanAct;}
+    private int DMG; public void setDMG(int DMG){this.DMG = DMG;} public int getDMG(){return DMG;}
     
     /**
      * @param Name - The name displayed for the status.
