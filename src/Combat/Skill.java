@@ -5,8 +5,7 @@ import static lib.MafLib.*;
 
 public class Skill {
     private String Name;
-    private String Description;
-    private int Cost;
+    private String Description; private int Cost;
     private int Power; //Damage for Attacks, Potency for Healing, Success Rate for Instant Kills
     private Element Type;
     private boolean SingleTarget;
@@ -40,7 +39,6 @@ public class Skill {
             s += Cost + " SP)\n" + RESET;
         }
         
-        setDesc();
         s += Description;
         return s;
     }
