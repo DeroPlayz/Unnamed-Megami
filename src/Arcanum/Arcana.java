@@ -1,6 +1,5 @@
 package Arcanum;
 
-
 public class Arcana{
     private String Name; public String getName(){return Name;}
     private String Number; public String getNumber(){return Number;}
