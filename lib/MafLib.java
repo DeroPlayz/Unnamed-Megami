@@ -14,6 +14,7 @@ public class MafLib{
     public static final String MAGENTA = "\033[35m";
     public static final String CYAN = "\033[36m";
     public static final String WHITE = "\033[37m";
+    public static final String DIM = "\033[2m";
     public static final String BOLD = "\033[1m";
     public static final String UNDERLINE = "\033[4m";
     public static final String STRIKE = "\033[9m";
