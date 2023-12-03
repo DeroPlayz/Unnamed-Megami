@@ -21,10 +21,10 @@ public class Map {
         this.Z1 = Z1;
         this.Z2 = Z2;
     }
-
+    
     public static Map World = new Map("World Map", 0, 150, 0, 150);
     {{
-        World.add(Home, []);
+        World.add(Location.Home, new int[] {72, 77});
     }}
     // public static Map SpiritColiseum = new Map("The Spirit Coliseum", 50, )
 }
