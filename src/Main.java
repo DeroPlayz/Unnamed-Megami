@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import Item.Item;
 import lib.MafLib;
+import static World.Map.*;
 
 public class Main implements Serializable{
     static Player player = new Player();
@@ -49,6 +50,6 @@ public class Main implements Serializable{
     public static void main(String[] args) {
         LS();
         saveGame();
-        System.out.println(player);
+        System.out.println(World);
     }
 }
