@@ -4,26 +4,27 @@ import java.util.HashMap;
 
 public class Map {
     private String Name; public void setName(String s){Name = s;} public String getName(){return Name;}
-    private int minX; public void setMinX(int minX){this.minX = minX;} public int getMinX(){return minX;}
-    private int maxX; public void setMaxX(int maxX){this.maxX = maxX;} public int getMaxX(){return maxX;}
-    private int minZ; public void setMinZ(int minZ){this.minZ = minZ;} public int getMinZ(){return minZ;}
-    private int maxZ; public void setMaxZ(int maxZ) {this.maxZ = maxZ;} public int getMaxZ() {return maxZ;}
-    private HashMap<Location, int[]> Locations = new HashMap<>();
+    private int X1;
+    private int X2;
+    private int Z1;
+    private int Z2;
+    HashMap<Location, int[]> Places = new HashMap<>();
 
-    public Map(String Name, int minX, int maxX, int minZ, int maxZ){
+    public void add(Location L, int[] xz){
+        Places.put(L, xz);
+    }
+
+    public Map(String Name, int X1, int X2, int Z1, int Z2){
         this.Name = Name;
-        
-        this.minX = minX;
-        this.maxX = maxX;
-        
-        this.minZ = minZ;
-        this.maxZ = maxZ;
+        this.X1 = X1;
+        this.X2 = X2;
+        this.Z1 = Z1;
+        this.Z2 = Z2;
     }
 
-    public Map(String Name){
-        this.Name = Name; minX = maxX = minZ = maxZ = 0;
-    }
-
-    Map World = new Map("World Map", 0, 100, 0, 100);
-    Map Home = new Map("Home", 0, 10, 0, 10);
+    public static Map World = new Map("World Map", 0, 150, 0, 150);
+    {{
+        World.add(Home, []);
+    }}
+    // public static Map SpiritColiseum = new Map("The Spirit Coliseum", 50, )
 }
