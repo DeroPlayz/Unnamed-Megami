@@ -1,14 +1,11 @@
 package Game;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import static input.userInput.*;
 // import java.util.Properties;
 import Item.Item;
 import lib.MafLib;
@@ -63,11 +60,8 @@ public class Main implements Serializable{
             player = new Player(MafLib.askString("Error. Corrupted/non-existent save. Initializing new save.\nWhat is your first name? ", false), MafLib.askString("What is this your last name? ", false));
         }
     }
-    public static void main(String[] args) throws IOException {
-        // LS();
-        // saveGame();
-        //act();
-        System.out.println(World);
-        keyPressed(KeyListener);
+    public static void main(String[] args) throws IOException{
+        LS();
+        act();
     }
 }
