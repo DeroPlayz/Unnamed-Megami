@@ -11,6 +11,10 @@ import lib.MafLib;
 // import static lib.MafLib.*;
 // import static World.Map.*;
 
+// FileInputStream input = new FileInputStream("src/settings.properties");
+// Properties p = new Properties();
+// p.load(input);
+
 public class Main implements Serializable{
     static Player player = new Player();
     public static void act(){
@@ -53,10 +57,6 @@ public class Main implements Serializable{
         }
     }
     public static void main(String[] args) throws IOException {
-        FileInputStream input = new FileInputStream("src/settings.properties");
-        Properties p = new Properties();
-        p.load(input);
-        
         LS();
         saveGame();
         act();
