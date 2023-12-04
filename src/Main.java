@@ -8,8 +8,8 @@ import java.util.Properties;
 import Item.Item;
 import lib.MafLib;
 
-import static lib.MafLib.*;
-import static World.Map.*;
+// import static lib.MafLib.*;
+// import static World.Map.*;
 
 public class Main implements Serializable{
     static Player player = new Player();

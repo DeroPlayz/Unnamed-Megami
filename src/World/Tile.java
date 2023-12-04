@@ -3,8 +3,8 @@ package World;
 import static lib.MafLib.*;
 
 public class Tile{
-    private String Name;
-    private boolean canSave;
+    private String Name; public String getName(){return Name;}
+    private boolean canSave; public boolean getSave(){return canSave;}
     private String Letter; public String getLetter(){return Letter;}
     private String Style;
 

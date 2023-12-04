@@ -3,16 +3,14 @@ package Combat;
 import static Combat.Element.*;
 import static lib.MafLib.*;
 
-import java.util.ArrayList;
-
 public class Skill {
     private String Name;
     private String Description; private int Cost;
-    private int Power; //Damage for Attacks, Potency for Healing, Success Rate for Instant Kills
+    private int Power; public int getPower(){return Power;} //Damage for Attacks, Potency for Healing, Success Rate for Instant Kills
     private Element Type;
-    private boolean SingleTarget;
+    private boolean SingleTarget; public boolean getTargetType(){return SingleTarget;}
     
-    private int Function; 
+    private int Function; public int getFunc(){return Function;}
         static final int Damage = 0;
         static final int Healing = 1;
         static final int Instant = 2;
