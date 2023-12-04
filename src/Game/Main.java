@@ -1,22 +1,29 @@
+package Game;
+
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.Properties;
+import static input.userInput.*;
+// import java.util.Properties;
 import Item.Item;
 import lib.MafLib;
+import Entity.Actor.Player;
 
 // import static lib.MafLib.*;
-// import static World.Map.*;
+import static World.Map.*;
 
 // FileInputStream input = new FileInputStream("src/settings.properties");
 // Properties p = new Properties();
 // p.load(input);
 
 public class Main implements Serializable{
-    static Player player = new Player();
+    public static Player player = new Player();
+    static final String Save = "Save";
     public static void act(){
         player.act();
     }
@@ -34,7 +41,7 @@ public class Main implements Serializable{
         
     }
     public static void saveGame(){
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("Save"))) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Save))) {
             out.writeObject(player.getFirst());
             out.writeObject(player.getLast());
             out.writeObject(player.getInventory());
@@ -45,7 +52,7 @@ public class Main implements Serializable{
         }
     }
     public static void loadGame() {
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("Save"))) {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(Save))) {
             player.setFirst((String) in.readObject());
             player.setLast((String) in.readObject());
             player.setName(player.getFirst() + " " + player.getLast());
@@ -57,8 +64,10 @@ public class Main implements Serializable{
         }
     }
     public static void main(String[] args) throws IOException {
-        LS();
-        saveGame();
-        act();
+        // LS();
+        // saveGame();
+        //act();
+        System.out.println(World);
+        keyPressed(KeyListener);
     }
 }

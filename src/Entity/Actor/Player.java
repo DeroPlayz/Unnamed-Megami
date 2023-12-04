@@ -1,7 +1,12 @@
-import Item.Item;
-import static Arcanum.Arcana.Fool;
+package Entity.Actor;
 
-class Player extends Actor{
+import Item.Item;
+import lib.MafLib;
+
+import static Arcanum.Arcana.Fool;
+import static World.Map.World;
+
+public class Player extends Actor{
     private String First; public void setFirst(String First){this.First = First;} public String getFirst(){return First;}
     private String Last; public void setLast(String Last){this.Last = Last;} public String getLast(){return Last;}
     String Name = First + " " + Last;
@@ -26,6 +31,21 @@ class Player extends Actor{
     }
 
     public void act(){
-        System.out.println("What would you like to do?\n1. Move.\n2. Map\n3.Settings");
+        String response = MafLib.askString("What would you like to do?\n1. Move.\n2. Map.\n3. Save.\n4. Settings", true);
+        if(response.equals("1")){
+
+        }
+        else if(response.equals("2")){
+            System.out.println(World);
+        }
+        else if(response.equals("3")){
+
+        }
+        else if(response.equals("4")){
+            
+        }
+        else{
+            act();
+        }
     }
 }

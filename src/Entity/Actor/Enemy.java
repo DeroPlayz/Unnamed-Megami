@@ -1,3 +1,5 @@
+package Entity.Actor;
+
 import static Combat.Skill.*;
 
 import java.util.ArrayList;

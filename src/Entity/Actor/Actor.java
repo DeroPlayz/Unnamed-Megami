@@ -1,3 +1,5 @@
+package Entity.Actor;
+
 import Arcanum.Arcana;
 import Combat.Skill;
 import Entity.Entity;
@@ -33,6 +35,11 @@ public abstract class Actor extends Entity{
     protected int Endurance; public void setEndurance(int Endurance){this.Endurance = Endurance;} public int getEndurance(){return Endurance;}
     protected int Agility; public void setAgility(int Agility){this.Agility = Agility;} public int getAgility(){return Agility;}
     protected int Luck; public void setLuck(int Luck){this.Luck = Luck;} public int getLuck(){return Luck;}
+    protected int[] Coords = {0, 0};
+        public void setCoords(int[] Coords){this.Coords = Coords;} public int[] getCoords(){return Coords;}
+        public void setCoords(int x, int z){Coords[0] = x; Coords[1] = z;}
+        public void setX(int x){Coords[0] = x;} public int getX(){return Coords[0];}
+        public void setZ(int z){Coords[1] = z;} public int getZ(){return Coords[1];}
 
     public Actor(String Name, Arcana Arcana){
         super(Name);
