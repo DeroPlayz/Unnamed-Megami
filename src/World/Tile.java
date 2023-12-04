@@ -13,20 +13,16 @@ public class Tile{
         this.canSave = canSave;
         this.Letter = Letter;
         this.Style = Style;
-    }
-
-    public Tile(String Name, boolean canSave, String Letter){
-        this.Name = Name;
-        this.canSave = canSave;
-        this.Letter = Letter;
-        this.Style = RESET;
+        if(Letter.equals("W")){
+            this.Style += BOLD;
+        }
     }
 
     public String toString(){
         return Style + Letter + RESET;
     }
 
-    public static final Tile Home = new Tile("Home", true, "H", CYAN);
+    public static final Tile Home = new Tile("Home", true, "H", CYAN + UNDERLINE);
     public static final Tile Path = new Tile("Path", false, "P", YELLOW);
     public static final Tile Mountain = new Tile("Path", false, "M", BLACK);
     
@@ -37,7 +33,7 @@ public class Tile{
     public static final Tile Prison = new Tile("Prison of Lies", false, "PL", RED);
         public static final Tile PLWall = new Tile("Wall", false, "W", RED);
     
-    public static final Tile Palace = new Tile("Palace of Wrath", false, MAGENTA);
+    public static final Tile Palace = new Tile("Palace of Wrath", false, "PW", MAGENTA);
         public static final Tile PWWall = new Tile("Wall", false, "W", MAGENTA);
     
     public static final Tile Centralis = new Tile("Centralis Genesis", false, "CG", CYAN);
