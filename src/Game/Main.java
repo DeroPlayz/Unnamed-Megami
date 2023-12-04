@@ -1,11 +1,25 @@
 package Game;
 
+import java.awt.Cursor;
+import java.awt.Window.Type;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
+
 // import java.util.Properties;
 import Item.Item;
 import lib.MafLib;
@@ -60,8 +74,37 @@ public class Main implements Serializable{
             player = new Player(MafLib.askString("Error. Corrupted/non-existent save. Initializing new save.\nWhat is your first name? ", false), MafLib.askString("What is this your last name? ", false));
         }
     }
+    
     public static void main(String[] args) throws IOException{
-        LS();
-        act();
+        // LS();
+        // act();
+        JFrame frame = new JFrame();
+        BufferedImage icon = ImageIO.read(new File("src/icon.png"));
+        JLabel title = new JLabel("UNNAMED MEGAMI - BETA");
+        frame.setVisible(true);
+        frame.setSize(1000, 600);
+        frame.setFocusable(true);
+        frame.setAutoRequestFocus(true);
+        frame.setTitle("UNNAMED-MEGAMI (NOT FINISHED) [DO NOT DISTRIBUTE]");
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setIconImage(icon);
+        frame.add(title);
+        title.setLocation(900, 200);
+        title.setSize(200, 10);
+        
+        frame.addMouseMotionListener((MouseMotionListener) new MouseMotionListener() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                int x = e.getX();
+                int y = e.getY();
+                // title.setText("X: " + x + "\n Y: " + y);
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                // TODO Auto-generated method stub
+                throw new UnsupportedOperationException("Unimplemented method 'mouseDragged'");
+            }
+        });
     }
 }
