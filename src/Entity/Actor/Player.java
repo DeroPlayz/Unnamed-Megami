@@ -26,6 +26,6 @@ class Player extends Actor{
     }
 
     public void act(){
-        System.out.println("What would you like to do?\n1. Move.\n2. MapSettings");
+        System.out.println("What would you like to do?\n1. Move.\n2. Map\n3.Settings");
     }
 }
