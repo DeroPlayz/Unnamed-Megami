@@ -24,4 +24,8 @@ class Player extends Actor{
         String s = "Name: " + Name + "\nLevel: " + Level;
         return s;
     }
+
+    public void act(){
+        System.out.println("What would you like to do?\n1. Move.\n2. MapSettings");
+    }
 }
