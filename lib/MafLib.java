@@ -1,5 +1,7 @@
 package lib;
 
+import java.io.FileInputStream;
+import java.util.Properties;
 import java.util.Scanner;
 
 public class MafLib{
