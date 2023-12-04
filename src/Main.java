@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.Properties;
 import Item.Item;
 import lib.MafLib;
 
@@ -12,6 +13,9 @@ import static World.Map.*;
 
 public class Main implements Serializable{
     static Player player = new Player();
+    public static void act(){
+        player.act();
+    }
     public static void LS(){
         String response = MafLib.askString("Would you like to load your save, or start a new one?\n1. Load\n2. New", true);
         if(response.equals("1")){
@@ -36,7 +40,6 @@ public class Main implements Serializable{
             e.printStackTrace();
         }
     }
-
     public static void loadGame() {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("Save"))) {
             player.setFirst((String) in.readObject());
@@ -49,9 +52,13 @@ public class Main implements Serializable{
             player = new Player(MafLib.askString("Error. Corrupted/non-existent save. Initializing new save.\nWhat is your first name? ", false), MafLib.askString("What is this your last name? ", false));
         }
     }
-    public static void main(String[] args) {
-        // LS();
-        // saveGame();
-        System.out.println(World);
+    public static void main(String[] args) throws IOException {
+        FileInputStream input = new FileInputStream("src/settings.properties");
+        Properties p = new Properties();
+        p.load(input);
+        
+        LS();
+        saveGame();
+        act();
     }
 }
