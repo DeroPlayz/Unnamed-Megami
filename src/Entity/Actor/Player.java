@@ -7,6 +7,7 @@ import static Arcanum.Arcana.Fool;
 import static World.Map.World;
 
 import Game.Main;
+import Game.StringCallback;
 
 public class Player extends Actor{
     private String First; public void setFirst(String First){this.First = First;} public String getFirst(){return First;}
@@ -25,7 +26,7 @@ public class Player extends Actor{
         this.Last = Last;
     }
 
-    public Player(){
+    public Player(StringCallback stringCallback){
         super("Dummy", Fool);
     }
 

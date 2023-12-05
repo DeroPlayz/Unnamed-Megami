@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.concurrent.CountDownLatch;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -23,6 +24,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 // import java.util.Properties;
@@ -69,7 +71,8 @@ public class Main implements Serializable{
         load.setBounds(680, 200, 200, 50);
         start.setBounds(680, 250, 200, 50);
         settings.setBounds(680, 300, 200, 50);
-        log.setBounds(1, 0, frame.getWidth(), 20);
+        log.setVerticalAlignment(SwingConstants.TOP);
+        log.setBounds(1, 0, frame.getWidth(), frame.getWidth());
         
 
         load.addActionListener(new ActionListener() {
@@ -105,17 +108,18 @@ public class Main implements Serializable{
     public static void act(){
         player.act();
     }
-    
+    public static CountDownLatch latch = new CountDownLatch(1);
     public static void newGame(){
-        player = new Player(MafLib.askString("Initializing new save.\nWhat is your first name? ", false), MafLib.askString("What is this your last name? ", false));
+        player = new Player(MafLib.askString("<html>Initializing new save.<br>What is your first name? "), MafLib.askString("What is your last name?"));
     }
+
     public static void saveGame(){
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Save))) {
             out.writeObject(player.getFirst());
             out.writeObject(player.getLast());
             out.writeObject(player.getInventory());
             out.writeObject(player.getCash());
-            System.out.println("Saved successfully.");
+            log.setText("Saved successfully.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -129,7 +133,8 @@ public class Main implements Serializable{
             player.setCash((double) in.readObject());
             log.setText("Save loaded.");
         } catch (IOException | ClassNotFoundException e) {
-            player = new Player(MafLib.askString("Error. Corrupted/non-existent save. Initializing new save.\nWhat is your first name? ", false), MafLib.askString("What is this your last name? ", false));
+            player = new Player(MafLib.askString("Error. Corrupted/non-existent save. Initializing new save.\nWhat is your first name? "), MafLib.askString("What is your last name? "));
+            saveGame();
         }
     }
 }
