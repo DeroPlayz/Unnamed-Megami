@@ -65,7 +65,6 @@ public class Main implements Serializable{
         frame.add(start);
         frame.add(settings);
         frame.add(log);
-        frame.add(response);
         title.setBounds(700, 100, 200, 10);
         load.setBounds(680, 200, 200, 50);
         start.setBounds(680, 250, 200, 50);
