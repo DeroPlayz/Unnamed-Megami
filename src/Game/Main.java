@@ -89,21 +89,16 @@ public class Main implements Serializable{
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setIconImage(icon);
         frame.add(title);
-        title.setLocation(900, 200);
-        title.setSize(200, 10);
+        frame.setLayout(null);
+        title.setBounds(700, 100, 200, 10);
         
         frame.addMouseMotionListener((MouseMotionListener) new MouseMotionListener() {
             @Override
             public void mouseMoved(MouseEvent e) {
-                int x = e.getX();
-                int y = e.getY();
-                // title.setText("X: " + x + "\n Y: " + y);
             }
 
             @Override
             public void mouseDragged(MouseEvent e) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'mouseDragged'");
             }
         });
     }
