@@ -7,7 +7,10 @@ import java.awt.event.KeyListener;
 import java.io.FileInputStream;
 import java.util.Properties;
 import java.util.Scanner;
+import java.util.concurrent.CountDownLatch;
+
 import static Game.Main.*;
+import static Game.Main.latch;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -15,6 +18,7 @@ import javax.swing.JTextField;
 public class MafLib{
     public static JTextField response = new JTextField();
     public static boolean asking = false;
+    public static boolean inUse = false;
     public static final String RESET = "\033[0m";
     public static final String CLEARC = "\033[39m";
     public static final String CLEARF = "\033[22m" + "\033[23m" + "\033[24m" + "\033[27m" + "\033[28" + "\033[29m";
@@ -46,19 +50,28 @@ public class MafLib{
         return response;
     }
 
-    public static String askString(String Prompt){
+    public static String askString(String Prompt) {
         asking = true;
         frame.add(response);
         response.setBounds(680, 500, 200, 20);
+        log.setText(Prompt);
         response.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 asking = false;
+                frame.remove(response);
+                frame.revalidate();
+                frame.repaint();
+                log.setText("");
+                asking = false;
             }
         });
-        while(asking == true){}
+        
+
         return response.getText();
+        
     }
+
     public static int askInt(String Prompt, Boolean EndOnNewline){
         String nl = "";
         if(EndOnNewline == true){
