@@ -2,6 +2,8 @@ package Game;
 
 import java.awt.Cursor;
 import java.awt.Window.Type;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -16,8 +18,11 @@ import java.io.Serializable;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 // import java.util.Properties;
@@ -33,23 +38,86 @@ import static World.Map.*;
 // p.load(input);
 
 public class Main implements Serializable{
+    public static JFrame frame = new JFrame();
+    public static JLabel log = new JLabel();
+    public static JTextField response = new JTextField();
+
     public static Player player = new Player();
     static final String Save = "Save";
+        
+    public static void main(String[] args) throws IOException{
+        // LS();
+        // act();
+        BufferedImage icon = ImageIO.read(new File("src/icon.png"));
+        JLabel title = new JLabel("UNNAMED MEGAMI BETA");
+        JButton load = new JButton("Load");
+        JButton start = new JButton("New");
+        JButton settings = new JButton("Settings");
+        frame.setVisible(true);
+        frame.setSize(1000, 600);
+        frame.setFocusable(true);
+        frame.setAutoRequestFocus(true);
+        frame.setTitle("UNNAMED-MEGAMI (NOT FINISHED) [DO NOT DISTRIBUTE]");
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setIconImage(icon);
+        frame.setLayout(null);
+        frame.add(title);
+        frame.add(load);
+        frame.add(start);
+        frame.add(settings);
+        frame.add(log);
+        frame.add(response);
+        title.setBounds(700, 100, 200, 10);
+        load.setBounds(680, 200, 200, 50);
+        start.setBounds(680, 250, 200, 50);
+        settings.setBounds(680, 300, 200, 50);
+        log.setBounds(1, 0, frame.getWidth(), 20);
+        response.setBounds(680, 500, 200, 20);
+
+        response.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        load.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadGame();
+            }
+
+        });
+        start.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                newGame();
+            }
+        });
+        settings.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                player.settings();
+            }
+        });
+        frame.addMouseMotionListener((MouseMotionListener) new MouseMotionListener() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+            }
+        });
+    }
+
     public static void act(){
         player.act();
     }
-    public static void LS(){
-        String response = MafLib.askString("Would you like to load your save, or start a new one?\n1. Load\n2. New", true);
-        if(response.equals("1")){
-            loadGame();
-        }
-        else if(response.equals("2")){
-            player = new Player(MafLib.askString("Initializing new save.\nWhat is your first name? ", false), MafLib.askString("What is this your last name? ", false));
-        }
-        else{
-            LS();
-        }
-        
+    
+    public static void newGame(){
+        player = new Player(MafLib.askString("Initializing new save.\nWhat is your first name? ", false), MafLib.askString("What is this your last name? ", false));
     }
     public static void saveGame(){
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Save))) {
@@ -69,42 +137,9 @@ public class Main implements Serializable{
             player.setName(player.getFirst() + " " + player.getLast());
             player.setInventory((Item[]) in.readObject());
             player.setCash((double) in.readObject());
-            System.out.println("Loaded successfully.");
+            log.setText("Save loaded.");
         } catch (IOException | ClassNotFoundException e) {
             player = new Player(MafLib.askString("Error. Corrupted/non-existent save. Initializing new save.\nWhat is your first name? ", false), MafLib.askString("What is this your last name? ", false));
         }
-    }
-    
-    public static void main(String[] args) throws IOException{
-        // LS();
-        // act();
-        JFrame frame = new JFrame();
-        BufferedImage icon = ImageIO.read(new File("src/icon.png"));
-        JLabel title = new JLabel("UNNAMED MEGAMI - BETA");
-        frame.setVisible(true);
-        frame.setSize(1000, 600);
-        frame.setFocusable(true);
-        frame.setAutoRequestFocus(true);
-        frame.setTitle("UNNAMED-MEGAMI (NOT FINISHED) [DO NOT DISTRIBUTE]");
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.setIconImage(icon);
-        frame.add(title);
-        title.setLocation(900, 200);
-        title.setSize(200, 10);
-        
-        frame.addMouseMotionListener((MouseMotionListener) new MouseMotionListener() {
-            @Override
-            public void mouseMoved(MouseEvent e) {
-                int x = e.getX();
-                int y = e.getY();
-                // title.setText("X: " + x + "\n Y: " + y);
-            }
-
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'mouseDragged'");
-            }
-        });
     }
 }
