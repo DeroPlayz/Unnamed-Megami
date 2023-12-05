@@ -40,8 +40,7 @@ import static World.Map.*;
 public class Main implements Serializable{
     public static JFrame frame = new JFrame();
     public static JLabel log = new JLabel();
-    public static JTextField response = new JTextField();
-
+    public static String answer;
     public static Player player = new Player();
     static final String Save = "Save";
         
@@ -72,15 +71,7 @@ public class Main implements Serializable{
         start.setBounds(680, 250, 200, 50);
         settings.setBounds(680, 300, 200, 50);
         log.setBounds(1, 0, frame.getWidth(), 20);
-        response.setBounds(680, 500, 200, 20);
-
-        response.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
+        
 
         load.addActionListener(new ActionListener() {
             @Override

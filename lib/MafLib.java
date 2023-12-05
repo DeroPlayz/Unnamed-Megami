@@ -1,5 +1,7 @@
 package lib;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.FileInputStream;
@@ -11,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class MafLib{
+    public static JTextField response = new JTextField();
     public static boolean asking = false;
     public static final String RESET = "\033[0m";
     public static final String CLEARC = "\033[39m";
@@ -43,6 +46,19 @@ public class MafLib{
         return response;
     }
 
+    public static String askString(String Prompt){
+        asking = true;
+        frame.add(response);
+        response.setBounds(680, 500, 200, 20);
+        response.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                asking = false;
+            }
+        });
+        while(asking == true){}
+        return response.getText();
+    }
     public static int askInt(String Prompt, Boolean EndOnNewline){
         String nl = "";
         if(EndOnNewline == true){
