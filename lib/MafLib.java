@@ -1,10 +1,17 @@
 package lib;
 
-//import java.io.FileInputStream;
-//import java.util.Properties;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.FileInputStream;
+import java.util.Properties;
 import java.util.Scanner;
+import static Game.Main.*;
+
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class MafLib{
+    public static boolean asking = false;
     public static final String RESET = "\033[0m";
     public static final String CLEARC = "\033[39m";
     public static final String CLEARF = "\033[22m" + "\033[23m" + "\033[24m" + "\033[27m" + "\033[28" + "\033[29m";
@@ -93,15 +100,11 @@ public class MafLib{
     public static boolean isNumeric(String s){
         s = s.toLowerCase();
         for(int i = 0; i < s.length(); i++){
-            if("1234567890.".contains(asString(s.charAt(i))) == false){
+            if("1234567890.".contains(String.valueOf((s.charAt(i)))) == false){
                 return false;
             }
         }
         return true;
-    }
-     
-    public static String asString(char c){
-        return String.valueOf(c);
     }
 
     public static String reduce(String s){
