@@ -21,9 +21,12 @@ import java.util.concurrent.CountDownLatch;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -47,7 +50,6 @@ public class Main implements Serializable{
     public static JButton load = new JButton("Load");
     public static JButton start = new JButton("New");
     public static JButton settings = new JButton("Settings");
-        
 
     public static Player player = new Player();
     static final String Save = "Save";
@@ -143,20 +145,47 @@ public class Main implements Serializable{
 
     public static void settings(){
         log.setText("What setting would you like to change?");
-        frame.remove(start);
-        frame.remove(load);
-        frame.remove(settings);
-        title.setText("Settings");
+        openSettings();
     }
 
-    public static void returnToTile(){
+    public static void clearScreen(){
         Component[] components = frame.getContentPane().getComponents();
         for(int i = 0; i < components.length; i++){
             frame.remove(components[i]);
         }
+    }
+    public static void returnToTitle(){
+        clearScreen();
         frame.add(start);
         frame.add(load);
         frame.add(title);
         frame.add(settings);
+    }
+
+    public static void openSettings(String goBack){
+        clearScreen();
+        JButton back = new JButton();
+        JButton deleteSave = new JButton("Delete Current Save File.");
+        back.setbounds(680, 350, 200, 50);
+        frame.add(back);
+        frame.add(deleteSave);
+        back.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(goBack.equals("Title")){
+                    returnToTitle();               
+                }
+                if(goBack.equals("Game")){
+
+                }
+            }
+        });
+        deleteSave.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                File save = new File("Save");  
+                save.delete();
+            }
+        });
     }
 }
