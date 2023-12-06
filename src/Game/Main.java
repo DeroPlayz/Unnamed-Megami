@@ -68,9 +68,9 @@ public class Main implements Serializable{
         frame.add(settings);
         frame.add(log);
         title.setBounds(700, 100, 200, 10);
-        load.setBounds(680, 200, 200, 50);
-        start.setBounds(680, 250, 200, 50);
-        settings.setBounds(680, 300, 200, 50);
+        load.setBounds(680, 275, 200, 50);
+        start.setBounds(680, 200, 200, 50);
+        settings.setBounds(680, 350, 200, 50);
         log.setVerticalAlignment(SwingConstants.TOP);
         log.setBounds(1, 0, frame.getWidth(), frame.getWidth());
         
@@ -110,7 +110,7 @@ public class Main implements Serializable{
     }
     public static CountDownLatch latch = new CountDownLatch(1);
     public static void newGame(){
-        player = new Player(MafLib.askString("<html>Initializing new save.<br>What is your first name? "), MafLib.askString("What is your last name?"));
+        player = new Player(MafLib.askString("<html>Initializing new save.<br>What is your name?<br>Note: Separate first and last name with a space. (\" \")"));
     }
 
     public static void saveGame(){
@@ -131,9 +131,9 @@ public class Main implements Serializable{
             player.setName(player.getFirst() + " " + player.getLast());
             player.setInventory((Item[]) in.readObject());
             player.setCash((double) in.readObject());
-            log.setText("Save loaded.");
+            log.setText("<html>Save loaded.<br>Name: " + player.getName());
         } catch (IOException | ClassNotFoundException e) {
-            player = new Player(MafLib.askString("Error. Corrupted/non-existent save. Initializing new save.\nWhat is your first name? "), MafLib.askString("What is your last name? "));
+            player = new Player(MafLib.askString("Error. Corrupted/non-existent save. Initializing new save.<br>What is your name?<br>Note: Separate first and last name with a space. (\" \")"));
             saveGame();
         }
     }

@@ -7,7 +7,6 @@ import static Arcanum.Arcana.Fool;
 import static World.Map.World;
 
 import Game.Main;
-import Game.StringCallback;
 
 public class Player extends Actor{
     private String First; public void setFirst(String First){this.First = First;} public String getFirst(){return First;}
@@ -26,7 +25,19 @@ public class Player extends Actor{
         this.Last = Last;
     }
 
-    public Player(StringCallback stringCallback){
+    public Player(String Name){
+        super(Name, Fool);
+        if(Name.indexOf(" ") != -1){
+            First = Name.substring(0, Name.indexOf(" "));
+            Last = Name.substring(Name.indexOf(" "));
+        }
+        else{
+            First = Name;
+            Last = "";
+        }
+    }
+
+    public Player(){
         super("Dummy", Fool);
     }
 
