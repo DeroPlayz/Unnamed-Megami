@@ -5,6 +5,8 @@ import java.awt.Cursor;
 import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -33,9 +35,10 @@ import javax.swing.SwingUtilities;
 
 // import java.util.Properties;
 import Item.Item;
+import Scenes.Scene;
 import lib.MafLib;
 import Entity.Actor.Player;
-
+import static Scenes.Scene.*;
 // import static lib.MafLib.*;
 import static World.Map.*;
 
@@ -55,14 +58,96 @@ public class Main implements Serializable{
     static final String Save = "Save";
         
     public static void main(String[] args) throws IOException{
-        BufferedImage icon = ImageIO.read(new File("src/icon.png"));
+        returnToTitle();
+        
+    }
+
+    public static void newGame(){
+        String name = MafLib.askString("<html>Initializing new save.<br>What is your name?<br>Note: Separate first and last name with a space. (\" \")");
+        System.out.println(name);
+        MafLib.response.addKeyListener(new KeyListener(){
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == 10){
+                    saveGame();
+                }
+                
+            }
+            
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        
+        });
+        
+    }
+
+    public static void saveGame(){
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Save))) {
+            out.writeObject(player.getFirst());
+            //System.out.println(player.getFirst());
+            out.writeObject(player.getLast());
+            //System.out.println(player.getLast());
+            out.writeObject(player.getInventory());
+            //System.out.println(player.getInventory());
+            out.writeObject(player.getCash());
+            //System.out.println(player.getCash());
+            log.setText("<html>Saved successfully.<br>" + player);
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+    }
+    public static void loadGame() {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(Save))) {
+            player.setFirst((String) in.readObject());
+            player.setLast((String) in.readObject());
+            player.setName(player.getFirst() + " " + player.getLast());
+            player.setInventory((Item[]) in.readObject());
+            player.setCash((double) in.readObject());
+            log.setText("<html>Save loaded.<br>" + player.toString());
+        } catch (IOException | ClassNotFoundException e) {
+            player = new Player(MafLib.askString("Error. Corrupted/non-existent save. Initializing new save.<br>What is your name?<br>Note: Separate first and last name with a space. (\" \")"));
+            saveGame();
+        }
+    }
+
+    public static void settings(){
+        log.setText("What setting would you like to change?");
+        openSettings(Title);
+    }
+
+    public static void clearScreen(){
+        Component[] components = frame.getContentPane().getComponents();
+        for(int i = 0; i < components.length; i++){
+            frame.remove(components[i]);
+            frame.revalidate();
+            frame.repaint();
+        }
+    }
+    public static void returnToTitle(){
+        clearScreen();
+        frame.add(start);
+        frame.add(load);
+        frame.add(title);
+        frame.add(settings);
+        BufferedImage icon;
+        try {
+            icon = ImageIO.read(new File("src/icon.png"));
+            frame.setIconImage(icon);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         frame.setVisible(true);
         frame.setSize(1000, 600);
         frame.setFocusable(true);
         frame.setAutoRequestFocus(true);
         frame.setTitle("UNNAMED-MEGAMI (NOT FINISHED) [DO NOT DISTRIBUTE]");
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.setIconImage(icon);
         frame.setLayout(null);
         frame.add(title);
         frame.add(load);
@@ -88,95 +173,30 @@ public class Main implements Serializable{
             @Override
             public void actionPerformed(ActionEvent e) {
                 newGame();
-                saveGame();
             }
         });
+
         settings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
                 settings();
             }
         });
-        frame.addMouseMotionListener((MouseMotionListener) new MouseMotionListener() {
-            @Override
-            public void mouseMoved(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseDragged(MouseEvent e) {
-            }
-        });
     }
 
-    public static void newGame(){
-        player = new Player(MafLib.askString("<html>Initializing new save.<br>What is your name?<br>Note: Separate first and last name with a space. (\" \")"));
-        MafLib.response.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e){
-                saveGame();
-            }
-        });
-    }
-
-    public static void saveGame(){
-    try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Save))) {
-                out.writeObject(player.getFirst());
-                out.writeObject(player.getLast());
-                out.writeObject(player.getInventory());
-                out.writeObject(player.getCash());
-                log.setText("Saved successfully.");
-            } catch (IOException i) {
-                i.printStackTrace();
-            }                
-    }
-    public static void loadGame() {
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(Save))) {
-            player.setFirst((String) in.readObject());
-            player.setLast((String) in.readObject());
-            player.setName(player.getFirst() + " " + player.getLast());
-            player.setInventory((Item[]) in.readObject());
-            player.setCash((double) in.readObject());
-            log.setText("<html>Save loaded.<br>" + player.toString());
-        } catch (IOException | ClassNotFoundException e) {
-            player = new Player(MafLib.askString("Error. Corrupted/non-existent save. Initializing new save.<br>What is your name?<br>Note: Separate first and last name with a space. (\" \")"));
-            saveGame();
-        }
-    }
-
-    public static void settings(){
-        log.setText("What setting would you like to change?");
-        openSettings();
-    }
-
-    public static void clearScreen(){
-        Component[] components = frame.getContentPane().getComponents();
-        for(int i = 0; i < components.length; i++){
-            frame.remove(components[i]);
-        }
-    }
-    public static void returnToTitle(){
+    public static void openSettings(Scene s){
         clearScreen();
-        frame.add(start);
-        frame.add(load);
-        frame.add(title);
-        frame.add(settings);
-    }
-
-    public static void openSettings(String goBack){
-        clearScreen();
-        JButton back = new JButton();
+        JButton back = new JButton("Back");
         JButton deleteSave = new JButton("Delete Current Save File.");
-        back.setbounds(680, 350, 200, 50);
+        back.setBounds(680, 400, 200, 50);
+        deleteSave.setBounds(680, 500, 200, 50);
         frame.add(back);
         frame.add(deleteSave);
         back.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(goBack.equals("Title")){
-                    returnToTitle();               
-                }
-                if(goBack.equals("Game")){
-
+                if(s.equals(Title)){
+                    returnToTitle();
                 }
             }
         });
@@ -185,6 +205,7 @@ public class Main implements Serializable{
             public void actionPerformed(ActionEvent e) {
                 File save = new File("Save");  
                 save.delete();
+                log.setText("Save deleted.");
             }
         });
     }
