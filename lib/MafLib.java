@@ -10,7 +10,6 @@ import java.util.Scanner;
 import java.util.concurrent.CountDownLatch;
 
 import static Game.Main.*;
-import static Game.Main.latch;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -59,7 +58,7 @@ public class MafLib{
                 frame.remove(response);
                 frame.revalidate();
                 frame.repaint();
-                log.setText("");
+                
             }
         });
         return response.getText();

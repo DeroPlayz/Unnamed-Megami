@@ -4,6 +4,7 @@ import Item.Item;
 import lib.MafLib;
 
 import static Arcanum.Arcana.Fool;
+import static Game.Main.log;
 import static World.Map.World;
 
 import Game.Main;
@@ -11,7 +12,6 @@ import Game.Main;
 public class Player extends Actor{
     private String First; public void setFirst(String First){this.First = First;} public String getFirst(){return First;}
     private String Last; public void setLast(String Last){this.Last = Last;} public String getLast(){return Last;}
-    String Name = First + " " + Last;
     private Item[] Inventory = new Item[15]; public void setInventory(Item[] Inventory){this.Inventory = Inventory;} public Item[] getInventory(){return Inventory;}
     private double Cash; public void setCash(double Cash){this.Cash = Cash;} public double getCash(){return Cash;}
     private int Level;
@@ -25,15 +25,15 @@ public class Player extends Actor{
         this.Last = Last;
     }
 
-    public Player(String Name){
-        super(Name, Fool);
-        if(Name.indexOf(" ") != -1){
-            First = Name.substring(0, Name.indexOf(" "));
-            Last = Name.substring(Name.indexOf(" "));
+    public Player(String name){
+        super(name, Fool);
+        if(name.indexOf(" ") == -1){
+            First = name;
+            Last = "";
         }
         else{
-            First = Name;
-            Last = "";
+            First = name.substring(0, name.indexOf(" "));
+            Last = name.substring(name.indexOf(" "));
         }
     }
 
@@ -42,43 +42,23 @@ public class Player extends Actor{
     }
 
     public String toString(){
-        Name = First + " " + Last;        
-        String s = "Name: " + Name + "\nLevel: " + Level;
+        String s = "Name: " + First + " " + Last + "\nLevel: " + Level;
         return s;
     }
 
-    public void act(){
-        String response = MafLib.askString("What would you like to do?\n1. Move.\n2. Map.\n3. Settings", true);
-        if(response.equals("1")){
+    // public void act(){
+    //     String response = MafLib.askString("What would you like to do?\n1. Move.\n2. Map.\n3. Settings", true);
+    //     if(response.equals("1")){
             
-        }
-        else if(response.equals("2")){
-            System.out.println(World);
-        }
-        else if(response.equals("3")){
-            settings();
-        }
-        else{
-            act();
-        }
-    }
-
-    public void settings(){
-        String response = MafLib.askString("What setting would you like to change?\n1. Save.\n2. Load.\n0. Back.", true);
-            if(response.equals("1")){
-                saveGame();
-            }
-            else if(response.equals("2")){
-                loadGame();
-            }
-            else if(response.equals("0")){
-                act();
-            }
-            else{
-                settings();
-            }
-            // else if(response.equals("3")){
-            //     response = MafLib.askString("What response type would you like?\nNumerical - Answer with the number corresponding to your desired action.\nText - Answer by typing out the action you would like to take, verbatim (but not case-sensitive.)\nDifficult - The same as Text, but the game will not print out the options to show you.", true);
-            // }
-    }
+    //     }
+    //     else if(response.equals("2")){
+    //         System.out.println(World);
+    //     }
+    //     else if(response.equals("3")){
+    //         settings();
+    //     }
+    //     else{
+    //         act();
+    //     }
+    // }
 }
