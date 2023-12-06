@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 
 public class MafLib{
     public static JTextField response = new JTextField();
-    
+    public static boolean asking = false;
     public static final String RESET = "\033[0m";
     public static final String CLEARC = "\033[39m";
     public static final String CLEARF = "\033[22m" + "\033[23m" + "\033[24m" + "\033[27m" + "\033[28" + "\033[29m";
@@ -47,22 +47,33 @@ public class MafLib{
         String response = Scan.nextLine();
         return response;
     }
+        static String ans = "";
 
-    public static String askString(String Prompt) {
+    public static void askString(String Prompt) {
         frame.add(response);
         response.setBounds(680, 500, 200, 20);
         log.setText(Prompt);
-        response.addActionListener(new ActionListener(){
+        response.addKeyListener(new KeyListener(){
+
             @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.remove(response);
-                frame.revalidate();
-                frame.repaint();
-                
+            public void keyTyped(KeyEvent e) {
+                ans += e.getKeyChar();
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == 10){
+                    frame.remove(response);
+                    frame.revalidate();
+                    frame.repaint();
+                    
+                }
+            }
+            
+            @Override
+            public void keyReleased(KeyEvent e) {
             }
         });
-        return response.getText();
-        
     }
 
     public static int askInt(String Prompt, Boolean EndOnNewline){
