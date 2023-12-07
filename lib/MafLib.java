@@ -50,30 +50,9 @@ public class MafLib{
         static String ans = "";
 
     public static void askString(String Prompt) {
+        log.setText(Prompt);
         frame.add(response);
         response.setBounds(680, 500, 200, 20);
-        log.setText(Prompt);
-        response.addKeyListener(new KeyListener(){
-
-            @Override
-            public void keyTyped(KeyEvent e) {
-                ans += e.getKeyChar();
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode() == 10){
-                    frame.remove(response);
-                    frame.revalidate();
-                    frame.repaint();
-                    
-                }
-            }
-            
-            @Override
-            public void keyReleased(KeyEvent e) {
-            }
-        });
     }
 
     public static int askInt(String Prompt, Boolean EndOnNewline){
