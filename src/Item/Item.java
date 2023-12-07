@@ -8,4 +8,8 @@ abstract public class Item {
         this.Name = Name;
         this.Value = Value;
     }
+
+    public String toString(){
+        return Name + "(<html><br>Cash: $" + String.format("%.2f", Value) + ")";
+    }
 }

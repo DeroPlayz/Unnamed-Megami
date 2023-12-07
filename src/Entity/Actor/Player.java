@@ -7,6 +7,9 @@ import static Arcanum.Arcana.Fool;
 // import static Game.Main.log;
 // import static World.Map.World;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import Game.Main;
 
 public class Player extends Actor{
@@ -42,8 +45,31 @@ public class Player extends Actor{
     }
 
     public String toString(){
-        String s = "Name: " + First + " " + Last + "<html><br>Level: " + Level;
-        return s;
+        String s = "";
+        if(Last.equals("")){
+            s += "Name: " + First;
+        }
+        else{
+            s += Last + ", " + First;
+        }
+        
+        s += "<html><br>Level: " + Level + "<html><br>Cash: $" + String.format("%.2f", Cash) + "<html><br>Inventory: ";
+        for(int i = 1; i < Inventory.length; i++){
+            if(i%5 == 0){
+                s += "<html><br>";
+            }
+            if(i == Inventory.length - 1){
+                s += "& ";
+            }
+            if(Inventory[i] == null){
+                s += "Empty.";
+                return s;
+            }
+            else{
+                s += Inventory[i] + ", ";
+            }
+        }
+        return "";
     }
 
     // public void act(){

@@ -6,12 +6,13 @@ import static Scenes.Scene.Title;
 import static lib.MafLib.response;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
-import java.awt.FlowLayout;
+// import java.awt.FlowLayout;
 // import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+// import java.awt.GridBagConstraints;
+// import java.awt.GridBagLayout;
 // import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,12 +33,14 @@ import java.io.Serializable;
 import javax.imageio.ImageIO;
 // import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 // import javax.swing.JComponent;
 // import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPopupMenu;
 // import javax.swing.JComponent;
-import javax.swing.JPanel;
+// import javax.swing.JPanel;
 // import javax.swing.JList;
 // import javax.swing.JPopupMenu;
 // import javax.swing.JTextField;
@@ -67,7 +70,10 @@ public class Main implements Serializable{
     static final String Save = "Save";
         
     public static void main(String[] args) throws IOException{
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         returnToTitle();
+        frame.setSize(1000, 600);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     public static void newGame(){
@@ -81,13 +87,53 @@ public class Main implements Serializable{
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode() == 10){
-                    String ans = response.getText();
-                    player = new Player(ans);
-                    saveGame();
+                    String ans = MafLib.reduce(response.getText());
+                    if(ans.equals("crazy?")){
+                        String[] cheats = {"Name", "Level", "XP", "HP", "SP", "Strength", "Magic", "Endurance", "Agility", "Luck", "Inventory", "Cash", "Skills", "Affinities"};
+                        JComboBox devMenu = new JComboBox<>(cheats);
+                        devMenu.setBackground(new Color(255, 255, 255));
+                        devMenu.setVisible(true);
+                        frame.add(devMenu);
+                        devMenu.setBounds(69, 420, 150, 40);
+                        frame.remove(MafLib.response);
+                        frame.revalidate();
+                        frame.repaint();
+
+                        devMenu.addActionListener(new ActionListener() {
+
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                System.out.println(devMenu.getSelectedItem());
+                                if(devMenu.getSelectedItem().equals("Name")){
+                                    MafLib.askString("Cheat activated.");
+                                    MafLib.response.addKeyListener(new KeyListener() {
+
+                                        @Override
+                                        public void keyTyped(KeyEvent e) {
+                                        }
+
+                                        @Override
+                                        public void keyPressed(KeyEvent e) {
+                                            if(e.getKeyCode() == 10){}
+                                        }
+
+                                        @Override
+                                        public void keyReleased(KeyEvent e) {
+                                        }
+                                        
+                                    });
+                                }
+                            }
+                            
+                        });
+                    }
+                    else{
+                        player = new Player(response.getText());
+                        saveGame();
+                    }
                 }
-                
             }
-            
+
             @Override
             public void keyReleased(KeyEvent e) {
             }
@@ -140,10 +186,13 @@ public class Main implements Serializable{
     }
     public static void returnToTitle(){
         clearScreen();
+        JButton exit = new JButton("Exit to Desktop");
         frame.add(start);
         frame.add(load);
         frame.add(title);
         frame.add(settings);
+        frame.add(exit);
+
         BufferedImage icon;
         try {
             icon = ImageIO.read(new File("src/icon.png"));
@@ -152,11 +201,9 @@ public class Main implements Serializable{
             e.printStackTrace();
         }
         frame.setVisible(true);
-        frame.setSize(1000, 600);
         frame.setFocusable(true);
         frame.setAutoRequestFocus(true);
         frame.setTitle("UNNAMED-MEGAMI (NOT FINISHED) [DO NOT DISTRIBUTE]");
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         // JPanel panel = new JPanel();
         // panel.setLayout(new FlowLayout());
@@ -174,17 +221,11 @@ public class Main implements Serializable{
         title.setBounds(600, 100, frame.getWidth(), 50);
         title.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
         
-        
         log.setBounds(1, 0, frame.getWidth(), frame.getWidth());
         log.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
         log.setVerticalAlignment(SwingConstants.TOP);
 
         load.setBounds(680, 275, 200, 50);
-        
-        start.setBounds(680, 200, 200, 50);
-        
-        settings.setBounds(680, 350, 200, 50);    
-        
         load.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -192,6 +233,8 @@ public class Main implements Serializable{
             }
 
         });
+
+        start.setBounds(680, 200, 200, 50);
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -199,11 +242,22 @@ public class Main implements Serializable{
             }
         });
 
+        settings.setBounds(680, 350, 200, 50);    
         settings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
                 settings();
             }
+        });
+
+        exit.setBounds(680, 425, 200, 50);
+        exit.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+            
         });
     }
 

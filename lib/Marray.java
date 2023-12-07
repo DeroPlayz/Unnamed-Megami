@@ -5,8 +5,12 @@ import java.util.ArrayList;
 public class Marray {
     private ArrayList<Object> List = new ArrayList<>();
     public int length = List.size();
+    public Marray(Object[] o){
+        for(int i = 0; i < o.length; i++){
+            List.add(o[i]);
+        }
+    }
     public Marray(){
-        
     }
 
     public Object get(int index){
