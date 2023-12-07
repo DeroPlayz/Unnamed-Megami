@@ -1,7 +1,12 @@
 package Game;
 
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.GridBagLayout;
 import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +24,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.concurrent.CountDownLatch;
-
+import static lib.MafLib.*;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -32,14 +37,14 @@ import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
 
-// import java.util.Properties;
+import java.util.Properties;
 import Item.Item;
 import Scenes.Scene;
 import lib.MafLib;
 import Entity.Actor.Player;
 import static Scenes.Scene.*;
-// import static lib.MafLib.*;
 import static World.Map.*;
 
 // FileInputStream input = new FileInputStream("src/settings.properties");
@@ -63,8 +68,7 @@ public class Main implements Serializable{
     }
 
     public static void newGame(){
-        String name = MafLib.askString("<html>Initializing new save.<br>What is your name?<br>Note: Separate first and last name with a space. (\" \")");
-        System.out.println(name);
+        MafLib.askString("<html>Initializing new save.<br>What is your name?<br>Note: Separate first and last name with a space. (\" \")");
         MafLib.response.addKeyListener(new KeyListener(){
 
             @Override
@@ -74,6 +78,8 @@ public class Main implements Serializable{
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode() == 10){
+                    String ans = response.getText();
+                    player = new Player(ans);
                     saveGame();
                 }
                 
@@ -111,8 +117,8 @@ public class Main implements Serializable{
             player.setCash((double) in.readObject());
             log.setText("<html>Save loaded.<br>" + player.toString());
         } catch (IOException | ClassNotFoundException e) {
-            player = new Player(MafLib.askString("Error. Corrupted/non-existent save. Initializing new save.<br>What is your name?<br>Note: Separate first and last name with a space. (\" \")"));
-            saveGame();
+            MafLib.askString("<html>Error. Corrupted/non-existent save. Initializing new save.<br>What is your name?<br>Note: Separate first and last name with a space. (\" \")");
+            player = new Player(MafLib.response.getText());
         }
     }
 
@@ -148,20 +154,31 @@ public class Main implements Serializable{
         frame.setAutoRequestFocus(true);
         frame.setTitle("UNNAMED-MEGAMI (NOT FINISHED) [DO NOT DISTRIBUTE]");
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.setLayout(null);
-        frame.add(title);
-        frame.add(load);
-        frame.add(start);
-        frame.add(settings);
-        frame.add(log);
-        title.setBounds(700, 100, 200, 15);
-        load.setBounds(680, 275, 200, 50);
-        start.setBounds(680, 200, 200, 50);
-        settings.setBounds(680, 350, 200, 50);
-        log.setVerticalAlignment(SwingConstants.TOP);
-        log.setBounds(1, 0, frame.getWidth(), frame.getWidth());
         
+        JPanel panel = new JPanel();
+        
+        panel.setLayout(new GridBagLayout());
+        frame.getContentPane().add(panel);
+        frame.add(title, BorderLayout.NORTH);
+        frame.add(start, BorderLayout.CENTER);
+        frame.add(load, BorderLayout.CENTER);
+        frame.add(settings, BorderLayout.CENTER);
+        frame.add(log, BorderLayout.WEST);
+        
+        title.setBounds(frame.getWidth(), 100, frame.getWidth(), 50);
+        title.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
+        
+        
+        log.setBounds(1, 0, frame.getWidth(), frame.getWidth());
+        log.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+        log.setVerticalAlignment(SwingConstants.TOP);
 
+        load.setBounds(680, 275, 200, 50);
+        
+        start.setBounds(680, 200, 200, 50);
+        
+        settings.setBounds(680, 350, 200, 50);    
+        
         load.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -206,6 +223,7 @@ public class Main implements Serializable{
                 File save = new File("Save");  
                 save.delete();
                 log.setText("Save deleted.");
+                player = new Player();
             }
         });
     }
