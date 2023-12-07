@@ -1,11 +1,11 @@
 package Entity.Actor;
 
 import Item.Item;
-import lib.MafLib;
+// import lib.MafLib;
 
 import static Arcanum.Arcana.Fool;
-import static Game.Main.log;
-import static World.Map.World;
+// import static Game.Main.log;
+// import static World.Map.World;
 
 import Game.Main;
 
@@ -42,7 +42,7 @@ public class Player extends Actor{
     }
 
     public String toString(){
-        String s = "Name: " + First + " " + Last + "\nLevel: " + Level;
+        String s = "Name: " + First + " " + Last + "<html><br>Level: " + Level;
         return s;
     }
 

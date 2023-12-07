@@ -1,7 +1,7 @@
 package World;
 
 import static World.Tile.*;
-import static lib.MafLib.*;
+// import static lib.MafLib.*;
 import static Game.Main.player;
 
 public class Map {

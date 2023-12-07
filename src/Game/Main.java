@@ -1,20 +1,25 @@
 package Game;
 
-import javax.swing.JComponent;
-import javax.swing.JPanel;
+// import static World.Map.*;
+import static Scenes.Scene.Title;
+// import java.util.concurrent.CountDownLatch;
+import static lib.MafLib.response;
+
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.Cursor;
+import java.awt.FlowLayout;
+// import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Window.Type;
+// import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+// import java.awt.event.MouseEvent;
+// import java.awt.event.MouseListener;
+// import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,29 +28,28 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.concurrent.CountDownLatch;
-import static lib.MafLib.*;
+
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+// import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JDialog;
+// import javax.swing.JComponent;
+// import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPopupMenu;
-import javax.swing.JTextField;
+// import javax.swing.JComponent;
+import javax.swing.JPanel;
+// import javax.swing.JList;
+// import javax.swing.JPopupMenu;
+// import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-import javax.swing.border.Border;
+// import javax.swing.SwingUtilities;
+// import javax.swing.border.Border;
 
-import java.util.Properties;
+import Entity.Actor.Player;
+// import java.util.Properties;
 import Item.Item;
 import Scenes.Scene;
 import lib.MafLib;
-import Entity.Actor.Player;
-import static Scenes.Scene.*;
-import static World.Map.*;
 
 // FileInputStream input = new FileInputStream("src/settings.properties");
 // Properties p = new Properties();
@@ -64,13 +68,12 @@ public class Main implements Serializable{
         
     public static void main(String[] args) throws IOException{
         returnToTitle();
-        
     }
 
     public static void newGame(){
         MafLib.askString("<html>Initializing new save.<br>What is your name?<br>Note: Separate first and last name with a space. (\" \")");
         MafLib.response.addKeyListener(new KeyListener(){
-
+        
             @Override
             public void keyTyped(KeyEvent e) {
             }
@@ -155,17 +158,20 @@ public class Main implements Serializable{
         frame.setTitle("UNNAMED-MEGAMI (NOT FINISHED) [DO NOT DISTRIBUTE]");
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
-        JPanel panel = new JPanel();
+        // JPanel panel = new JPanel();
+        // panel.setLayout(new FlowLayout());
+        // frame.getContentPane().add(panel);
+
+        frame.setLayout(null);
+
+        frame.add(title);
         
-        panel.setLayout(new GridBagLayout());
-        frame.getContentPane().add(panel);
-        frame.add(title, BorderLayout.NORTH);
         frame.add(start, BorderLayout.CENTER);
         frame.add(load, BorderLayout.CENTER);
         frame.add(settings, BorderLayout.CENTER);
         frame.add(log, BorderLayout.WEST);
         
-        title.setBounds(frame.getWidth(), 100, frame.getWidth(), 50);
+        title.setBounds(600, 100, frame.getWidth(), 50);
         title.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
         
         
