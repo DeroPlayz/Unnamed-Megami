@@ -33,7 +33,7 @@ import java.io.Serializable;
 import javax.imageio.ImageIO;
 // import javax.swing.ImageIcon;
 import javax.swing.JButton;
-// import javax.swing.JComboBox;
+import javax.swing.JComboBox;
 // import javax.swing.JComponent;
 // import javax.swing.JDialog;
 import javax.swing.JFrame;
