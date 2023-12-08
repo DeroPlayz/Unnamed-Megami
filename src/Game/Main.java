@@ -6,7 +6,7 @@ import static Scenes.Scene.Title;
 import static lib.MafLib.response;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
+// import java.awt.Color;
 import java.awt.Component;
 // import java.awt.FlowLayout;
 // import java.awt.Cursor;
@@ -33,7 +33,7 @@ import java.io.Serializable;
 import javax.imageio.ImageIO;
 // import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
+// import javax.swing.JComboBox;
 // import javax.swing.JComponent;
 // import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -88,72 +88,72 @@ public class Main implements Serializable{
                     public void keyPressed(KeyEvent e) {
                         if(e.getKeyCode() == 10){
                             String ans = MafLib.reduce(response.getText());
-                            if(ans.equals("crazy?")){
-                                String[] cheats = {"Name", "Level", "XP", "HP", "SP", "Strength", "Magic", "Endurance", "Agility", "Luck", "Cash"};
-                                JComboBox devMenu = new JComboBox<>(cheats);
-                                devMenu.setBackground(new Color(255, 255, 255));
-                                devMenu.setVisible(true);
-                                frame.add(devMenu);
-                                devMenu.setBounds(69, 420, 150, 40);
-                                frame.remove(MafLib.response);
-                                frame.revalidate();
-                                frame.repaint();
+                    //         if(ans.equals("crazy?")){
+                    //             String[] cheats = {"Name", "Level", "XP", "HP", "SP", "Strength", "Magic", "Endurance", "Agility", "Luck", "Cash"};
+                    //             JComboBox devMenu = new JComboBox<>(cheats);
+                    //             devMenu.setBackground(new Color(255, 255, 255));
+                    //             devMenu.setVisible(true);
+                    //             frame.add(devMenu);
+                    //             devMenu.setBounds(69, 420, 150, 40);
+                    //             frame.remove(MafLib.response);
+                    //             frame.revalidate();
+                    //             frame.repaint();
         
-                                devMenu.addActionListener(new ActionListener() {
+                    //             devMenu.addActionListener(new ActionListener() {
         
-                                    @Override
-                                    public void actionPerformed(ActionEvent e) {
-                                        System.out.println(devMenu.getSelectedItem());
-                                        if(devMenu.getSelectedItem().equals("Name")){
-                                            MafLib.askString("Cheat activated. Enter your new name.");
-                                            MafLib.response.addKeyListener(new KeyListener() {
+                    //                 @Override
+                    //                 public void actionPerformed(ActionEvent e) {
+                    //                     System.out.println(devMenu.getSelectedItem());
+                    //                     if(devMenu.getSelectedItem().equals("Name")){
+                    //                         MafLib.askString("Cheat activated. Enter your new name.");
+                    //                         MafLib.response.addKeyListener(new KeyListener() {
         
-                                                @Override public void keyTyped(KeyEvent e) {}
-                                                @Override
-                                                public void keyPressed(KeyEvent e) {
-                                                    if(e.getKeyCode() == 10){
-                                                        player.setName(response.getText());
-                                                    }
-                                                }
-                                                @Override public void keyReleased(KeyEvent e) {}
-                                            });
-                                        }
-                                        else{
-                                            MafLib.askString("Cheat activated. Enter your desired " + devMenu.getSelectedItem() + ".");
-                                            MafLib.response.addKeyListener(new KeyListener() {
+                    //                             @Override public void keyTyped(KeyEvent e) {}
+                    //                             @Override
+                    //                             public void keyPressed(KeyEvent e) {
+                    //                                 if(e.getKeyCode() == 10){
+                    //                                     player.setName(response.getText());
+                    //                                 }
+                    //                             }
+                    //                             @Override public void keyReleased(KeyEvent e) {}
+                    //                         });
+                    //                     }
+                    //                     else{
+                    //                         MafLib.askString("Cheat activated. Enter your desired " + devMenu.getSelectedItem() + ".");
+                    //                         MafLib.response.addKeyListener(new KeyListener() {
         
-                                                @Override public void keyTyped(KeyEvent e) {}
-                                                @Override
-                                                public void keyPressed(KeyEvent e) {
-                                                    if(e.getKeyCode() == 10){
-                                                        if(MafLib.isNumeric(response.getText()) == true){
-                                                            double val = Double.valueOf(response.getText());
-                                                            // if(devMenu.getSelectedItem().equals("Level")){player.setLevel((int) val);}
-                                                            // if(devMenu.getSelectedItem().equals("XP")){player.setXP((int) val);}
-                                                            if(devMenu.getSelectedItem().equals("HP")){player.setMaxHP((int) val);}
-                                                            if(devMenu.getSelectedItem().equals("SP")){player.setMaxSP((int) val);}
-                                                            if(devMenu.getSelectedItem().equals("Strength")){player.setStrength((int) val);}
-                                                            if(devMenu.getSelectedItem().equals("Magic")){player.setMagic((int) val);}
-                                                            if(devMenu.getSelectedItem().equals("Endurance")){player.setEndurance((int) val);}
-                                                            if(devMenu.getSelectedItem().equals("Agility")){player.setAgility((int) val);}
-                                                            if(devMenu.getSelectedItem().equals("Luck")){player.setLuck((int) val);}
-                                                            if(devMenu.getSelectedItem().equals("Cash")){player.setCash(val);}
-                                                            saveGame();
-                                                        }
-                                            }
-                                        }
-                                        @Override public void keyReleased(KeyEvent e) {}
-                                    });
-                                }
+                    //                             @Override public void keyTyped(KeyEvent e) {}
+                    //                             @Override
+                    //                             public void keyPressed(KeyEvent e) {
+                    //                                 if(e.getKeyCode() == 10){
+                    //                                     if(MafLib.isNumeric(response.getText()) == true){
+                    //                                         double val = Double.valueOf(response.getText());
+                    //                                         // if(devMenu.getSelectedItem().equals("Level")){player.setLevel((int) val);}
+                    //                                         // if(devMenu.getSelectedItem().equals("XP")){player.setXP((int) val);}
+                    //                                         if(devMenu.getSelectedItem().equals("HP")){player.setMaxHP((int) val);}
+                    //                                         if(devMenu.getSelectedItem().equals("SP")){player.setMaxSP((int) val);}
+                    //                                         if(devMenu.getSelectedItem().equals("Strength")){player.setStrength((int) val);}
+                    //                                         if(devMenu.getSelectedItem().equals("Magic")){player.setMagic((int) val);}
+                    //                                         if(devMenu.getSelectedItem().equals("Endurance")){player.setEndurance((int) val);}
+                    //                                         if(devMenu.getSelectedItem().equals("Agility")){player.setAgility((int) val);}
+                    //                                         if(devMenu.getSelectedItem().equals("Luck")){player.setLuck((int) val);}
+                    //                                         if(devMenu.getSelectedItem().equals("Cash")){player.setCash(val);}
+                    //                                         saveGame();
+                    //                                     }
+                    //                         }
+                    //                     }
+                    //                     @Override public void keyReleased(KeyEvent e) {}
+                    //                 });
+                    //             }
 
-                            }
+                    //         }
                             
-                        });
-                    }
-                    else{
-                        player = new Player(response.getText());
+                    //     });
+                    // }
+                    // else{
+                        player = new Player(ans);
                         saveGame();
-                    }
+                    // }
                 }
             }
 
