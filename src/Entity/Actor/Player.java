@@ -7,8 +7,8 @@ import static Arcanum.Arcana.Fool;
 // import static Game.Main.log;
 // import static World.Map.World;
 
-import java.text.NumberFormat;
-import java.util.Locale;
+// import java.text.NumberFormat;
+// import java.util.Locale;
 
 import Game.Main;
 

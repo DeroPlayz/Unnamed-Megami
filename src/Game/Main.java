@@ -38,7 +38,7 @@ import javax.swing.JComboBox;
 // import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPopupMenu;
+// import javax.swing.JPopupMenu;
 // import javax.swing.JComponent;
 // import javax.swing.JPanel;
 // import javax.swing.JList;
@@ -78,51 +78,74 @@ public class Main implements Serializable{
 
     public static void newGame(){
         MafLib.askString("<html>Initializing new save.<br>What is your name?<br>Note: Separate first and last name with a space. (\" \")");
-        MafLib.response.addKeyListener(new KeyListener(){
+                MafLib.response.addKeyListener(new KeyListener(){
+                
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                    }
         
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode() == 10){
-                    String ans = MafLib.reduce(response.getText());
-                    if(ans.equals("crazy?")){
-                        String[] cheats = {"Name", "Level", "XP", "HP", "SP", "Strength", "Magic", "Endurance", "Agility", "Luck", "Inventory", "Cash", "Skills", "Affinities"};
-                        JComboBox devMenu = new JComboBox<>(cheats);
-                        devMenu.setBackground(new Color(255, 255, 255));
-                        devMenu.setVisible(true);
-                        frame.add(devMenu);
-                        devMenu.setBounds(69, 420, 150, 40);
-                        frame.remove(MafLib.response);
-                        frame.revalidate();
-                        frame.repaint();
-
-                        devMenu.addActionListener(new ActionListener() {
-
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                System.out.println(devMenu.getSelectedItem());
-                                if(devMenu.getSelectedItem().equals("Name")){
-                                    MafLib.askString("Cheat activated.");
-                                    MafLib.response.addKeyListener(new KeyListener() {
-
-                                        @Override
-                                        public void keyTyped(KeyEvent e) {
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                        if(e.getKeyCode() == 10){
+                            String ans = MafLib.reduce(response.getText());
+                            if(ans.equals("crazy?")){
+                                String[] cheats = {"Name", "Level", "XP", "HP", "SP", "Strength", "Magic", "Endurance", "Agility", "Luck", "Cash"};
+                                JComboBox devMenu = new JComboBox<>(cheats);
+                                devMenu.setBackground(new Color(255, 255, 255));
+                                devMenu.setVisible(true);
+                                frame.add(devMenu);
+                                devMenu.setBounds(69, 420, 150, 40);
+                                frame.remove(MafLib.response);
+                                frame.revalidate();
+                                frame.repaint();
+        
+                                devMenu.addActionListener(new ActionListener() {
+        
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        System.out.println(devMenu.getSelectedItem());
+                                        if(devMenu.getSelectedItem().equals("Name")){
+                                            MafLib.askString("Cheat activated. Enter your new name.");
+                                            MafLib.response.addKeyListener(new KeyListener() {
+        
+                                                @Override public void keyTyped(KeyEvent e) {}
+                                                @Override
+                                                public void keyPressed(KeyEvent e) {
+                                                    if(e.getKeyCode() == 10){
+                                                        player.setName(response.getText());
+                                                    }
+                                                }
+                                                @Override public void keyReleased(KeyEvent e) {}
+                                            });
                                         }
-
-                                        @Override
-                                        public void keyPressed(KeyEvent e) {
-                                            if(e.getKeyCode() == 10){}
+                                        else{
+                                            MafLib.askString("Cheat activated. Enter your desired " + devMenu.getSelectedItem() + ".");
+                                            MafLib.response.addKeyListener(new KeyListener() {
+        
+                                                @Override public void keyTyped(KeyEvent e) {}
+                                                @Override
+                                                public void keyPressed(KeyEvent e) {
+                                                    if(e.getKeyCode() == 10){
+                                                        if(MafLib.isNumeric(response.getText()) == true){
+                                                            double val = Double.valueOf(response.getText());
+                                                            // if(devMenu.getSelectedItem().equals("Level")){player.setLevel((int) val);}
+                                                            // if(devMenu.getSelectedItem().equals("XP")){player.setXP((int) val);}
+                                                            if(devMenu.getSelectedItem().equals("HP")){player.setMaxHP((int) val);}
+                                                            if(devMenu.getSelectedItem().equals("SP")){player.setMaxSP((int) val);}
+                                                            if(devMenu.getSelectedItem().equals("Strength")){player.setStrength((int) val);}
+                                                            if(devMenu.getSelectedItem().equals("Magic")){player.setMagic((int) val);}
+                                                            if(devMenu.getSelectedItem().equals("Endurance")){player.setEndurance((int) val);}
+                                                            if(devMenu.getSelectedItem().equals("Agility")){player.setAgility((int) val);}
+                                                            if(devMenu.getSelectedItem().equals("Luck")){player.setLuck((int) val);}
+                                                            if(devMenu.getSelectedItem().equals("Cash")){player.setCash(val);}
+                                                            saveGame();
+                                                        }
+                                            }
                                         }
-
-                                        @Override
-                                        public void keyReleased(KeyEvent e) {
-                                        }
-                                        
+                                        @Override public void keyReleased(KeyEvent e) {}
                                     });
                                 }
+
                             }
                             
                         });
