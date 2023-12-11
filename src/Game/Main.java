@@ -6,7 +6,7 @@ import static Scenes.Scene.Title;
 import static lib.MafLib.response;
 
 import java.awt.BorderLayout;
-// import java.awt.Color;
+import java.awt.Color;
 import java.awt.Component;
 // import java.awt.FlowLayout;
 // import java.awt.Cursor;
