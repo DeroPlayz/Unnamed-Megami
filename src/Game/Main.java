@@ -4,6 +4,7 @@ package Game;
 import static Scenes.Scene.Title;
 // import java.util.concurrent.CountDownLatch;
 import static lib.MafLib.response;
+import java.awt.*;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -40,13 +41,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 // import javax.swing.JPopupMenu;
 // import javax.swing.JComponent;
-// import javax.swing.JPanel;
+import javax.swing.JPanel;
 // import javax.swing.JList;
 // import javax.swing.JPopupMenu;
 // import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 // import javax.swing.SwingUtilities;
 // import javax.swing.border.Border;
+// import javax.tools.Tool;
 
 import Entity.Actor.Player;
 // import java.util.Properties;
@@ -68,7 +70,13 @@ public class Main implements Serializable{
 
     public static Player player = new Player();
     static final String Save = "Save";
-        
+    
+    static Toolkit toolkit = Toolkit.getDefaultToolkit();
+    static Dimension screen = toolkit.getScreenSize();
+    
+    static int screenWidth = (int) screen.getWidth();
+    static int screenHeight = (int) screen.getHeight();
+
     public static void main(String[] args) throws IOException{
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         returnToTitle();
@@ -226,27 +234,23 @@ public class Main implements Serializable{
         frame.setAutoRequestFocus(true);
         frame.setTitle("UNNAMED-MEGAMI (NOT FINISHED) [DO NOT DISTRIBUTE]");
         
-        // JPanel panel = new JPanel();
-        // panel.setLayout(new FlowLayout());
-        // frame.getContentPane().add(panel);
-
-        frame.setLayout(null);
+        JPanel panel = new JPanel(new GridBagLayout());
+        frame.getContentPane().add(panel);
 
         frame.add(title);
-        
-        frame.add(start, BorderLayout.CENTER);
-        frame.add(load, BorderLayout.CENTER);
-        frame.add(settings, BorderLayout.CENTER);
-        frame.add(log, BorderLayout.WEST);
-        
-        title.setBounds(600, 100, frame.getWidth(), 50);
+        frame.add(start);
+        frame.add(load);
+        frame.add(settings);
+        frame.add(log);
+
+        title.setBounds((int) ((screenWidth/2)-(title.getPreferredSize().getWidth())), 100, frame.getWidth(), 50);
         title.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
         
         log.setBounds(1, 0, frame.getWidth(), frame.getWidth());
         log.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
         log.setVerticalAlignment(SwingConstants.TOP);
 
-        load.setBounds(680, 275, 200, 50);
+        load.setBounds((int) ((screenWidth/2)-(load.getPreferredSize().getWidth())), 275, 200, 50);
         load.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -255,7 +259,7 @@ public class Main implements Serializable{
 
         });
 
-        start.setBounds(680, 200, 200, 50);
+        start.setBounds((int) ((screenWidth/2)-(start.getPreferredSize().getWidth())), 200, 200, 50);
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -263,7 +267,7 @@ public class Main implements Serializable{
             }
         });
 
-        settings.setBounds(680, 350, 200, 50);    
+        settings.setBounds((int) ((screenWidth/2)-(settings.getPreferredSize().getWidth())), 350, 200, 50);    
         settings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -271,7 +275,7 @@ public class Main implements Serializable{
             }
         });
 
-        exit.setBounds(680, 425, 200, 50);
+        exit.setBounds((int) ((screenWidth/2)-(exit.getPreferredSize().getWidth())), 425, 200, 50);
         exit.addActionListener(new ActionListener() {
 
             @Override
@@ -286,8 +290,8 @@ public class Main implements Serializable{
         clearScreen();
         JButton back = new JButton("Back");
         JButton deleteSave = new JButton("Delete Current Save File.");
-        back.setBounds(680, 400, 200, 50);
-        deleteSave.setBounds(680, 500, 200, 50);
+        back.setBounds((int) ((screenWidth/2)-(back.getPreferredSize().getWidth())), 400, 200, 50);
+        deleteSave.setBounds((int) ((screenWidth/2)-(deleteSave.getPreferredSize().getWidth())), 500, 200, 50);
         frame.add(back);
         frame.add(deleteSave);
         back.addActionListener(new ActionListener(){
