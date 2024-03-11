@@ -9,7 +9,7 @@ public class Status {
     /**
      * @param Name - The name displayed for the status.
      * @param CanAct - Whether or not the status prevents the target from acting in combat.
-     * @param DMG - What percent of the target's max health is dealt as damage to them. I.e, on a target with 40 max HP, DMG 50 would makwe
+     * @param DMG - What percent of the target's max health is dealt as damage to them. I.e, on a target with 40 max HP, DMG 50 would make them take 20 damage each turn.
      */
     public Status(String Name, boolean CanAct, int DMG){
         this.Name = Name;

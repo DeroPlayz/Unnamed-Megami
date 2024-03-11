@@ -30,12 +30,11 @@ public class Enemy extends Actor {
     public static Enemy eSix;
 
     public static ArrayList<Enemy> EnemyParty = new ArrayList<>(){{
-        add(eOne);
-        add(eTwo);
-        add(eThree);
-        add(eFour);
-        add(eFive);
-        add(eSix);
+        // add(eOne);
+        // add(eTwo);
+        // add(eThree);
+        // add(eFour);
+        // add(eFive);
+        // add(eSix);
     }};
-
 }
