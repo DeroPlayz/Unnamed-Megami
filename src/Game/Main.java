@@ -61,6 +61,9 @@ import lib.MafLib;
 // p.load(input);
 
 public class Main implements Serializable{
+    public static Player player = new Player();
+    static final String Save = "Save";
+    
     public static JFrame frame = new JFrame();
     public static JLabel log = new JLabel();
     public static JLabel title = new JLabel("UNNAMED MEGAMI BETA");
@@ -68,9 +71,6 @@ public class Main implements Serializable{
     public static JButton start = new JButton("New");
     public static JButton settings = new JButton("Settings");
 
-    public static Player player = new Player();
-    static final String Save = "Save";
-    
     static Toolkit toolkit = Toolkit.getDefaultToolkit();
     static Dimension screen = toolkit.getScreenSize();
     
@@ -78,10 +78,11 @@ public class Main implements Serializable{
     static int screenHeight = (int) screen.getHeight();
 
     public static void main(String[] args) throws IOException{
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        returnToTitle();
-        frame.setSize(1000, 600);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        // frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        // returnToTitle();
+        // frame.setSize(1000, 600);
+        // frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        System.out.println("test");
     }
 
     public static void newGame(){

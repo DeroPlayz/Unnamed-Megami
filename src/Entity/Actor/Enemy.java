@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import Arcanum.Arcana;
 
 import Combat.Skill;
+import Entity.Entity;
 
-public class Enemy extends Actor {
+public class Enemy extends Entity {
+    
     public Enemy(String Name, Arcana Arcana, int MaxHP, int MaxSP, int[] SMEAL, Skill[] Skills) {
         super(Name, Arcana);
         super.Skills = Skills;
@@ -37,4 +39,13 @@ public class Enemy extends Actor {
         // add(eFive);
         // add(eSix);
     }};
+
+    @Override
+    public String toString() {
+        String s = getName() + "(" + getArcana() + ")\n" + "Level " + getLevel() + "\nHP: " + getHP() + "/" + getMaxHP() + " | SP: " + getSP() + "/" + getMaxSP() + "Strength: " + getStrength() + "\nMagic: " + getMagic() + "\nEndurance: " + getEndurance() + "\nAgility: " + getAgility() + "\nLuck: " + getLuck();
+        for(int i = 0; i < getSkills().length; i++){
+            s += Skills[i].toString();
+        }
+        return s;
+    }
 }

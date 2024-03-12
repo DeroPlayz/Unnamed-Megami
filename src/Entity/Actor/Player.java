@@ -7,17 +7,19 @@ import static Arcanum.Arcana.Fool;
 // import static Game.Main.log;
 // import static World.Map.World;
 
+import Entity.Entity;
+
 // import java.text.NumberFormat;
 // import java.util.Locale;
 
 import Game.Main;
 
-public class Player extends Actor{
-    private String First; public void setFirst(String First){this.First = First;} public String getFirst(){return First;}
-    private String Last; public void setLast(String Last){this.Last = Last;} public String getLast(){return Last;}
-    private Item[] Inventory = new Item[15]; public void setInventory(Item[] Inventory){this.Inventory = Inventory;} public Item[] getInventory(){return Inventory;}
-    private double Cash; public void setCash(double Cash){this.Cash = Cash;} public double getCash(){return Cash;}
-    private int Level;
+public class Player extends Entity{
+    private String First;                       public void setFirst(String First){this.First = First;}                 public String getFirst(){return First;}
+    private String Last;                        public void setLast(String Last){this.Last = Last;}                     public String getLast(){return Last;}
+    private Item[] Inventory = new Item[15];    public void setInventory(Item[] Inventory){this.Inventory = Inventory;} public Item[] getInventory(){return Inventory;}
+    private double Cash;                        public void setCash(double Cash){this.Cash = Cash;}                     public double getCash(){return Cash;}
+    private int Level;                          public void setLevel(int Level){this.Level = Level;}                    public int getLevel(){return Level;}
 
     public void saveGame(){Main.saveGame();}
     public void loadGame(){Main.loadGame();}
