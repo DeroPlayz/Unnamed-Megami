@@ -12,8 +12,7 @@ public class Main{
         player.setName(MafLib.askString("Welcome. What is your first and last name?", true));
         player.setFirst(player.getName().substring(0, player.getName().indexOf("")));
         player.setLast(player.getName().substring(player.getName().indexOf("")));
-        System.out.println(player);
-        System.out.println(Enemy.Pixie);
+        player.saveGame();
     }
 
 
