@@ -13,7 +13,7 @@ public class Arcana{
 
     @Override
     public String toString(){
-        return (Name + "(" + Number + ")");
+        return (Name + " " + Number);
     }
 
     public static final Arcana Fool = new Arcana("Fool", "0", 0);

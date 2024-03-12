@@ -1,4 +1,4 @@
-package Entity.Actor;
+package Entity;
 
 public class Ally {
     

@@ -9,8 +9,6 @@ package lib;
 import java.util.Scanner;
 // import java.util.concurrent.CountDownLatch;
 
-import static Game.Main.*;
-
 // import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -49,11 +47,11 @@ public class MafLib{
     }
         static String ans = "";
 
-    public static void askString(String Prompt) {
-        log.setText(Prompt);
-        frame.add(response);
-        response.setBounds(680, 500, 200, 20);
-    }
+    // public static void askString(String Prompt) {
+    //     log.setText(Prompt);
+    //     frame.add(response);
+    //     response.setBounds(680, 500, 200, 20);
+    // }
 
     public static int askInt(String Prompt, Boolean EndOnNewline){
         String nl = "";

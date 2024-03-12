@@ -1,8 +1,7 @@
 package World;
 
 import static World.Tile.*;
-// import static lib.MafLib.*;
-import static Game.Main.player;
+import static Entity.Player.player;
 
 public class Map {
     private String Name; public void setName(String s){Name = s;} public String getName(){return Name;}

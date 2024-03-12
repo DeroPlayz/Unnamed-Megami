@@ -8,6 +8,7 @@ public class Skill {
     private String Description; private int Cost;
     private int Power; public int getPower(){return Power;} //Damage for Attacks, Potency for Healing, Success Rate for Instant Kills
     private Element Type;
+    @SuppressWarnings("unused")
     private int hitType;
     public static final int Ally = 0;
     public static final int Ally_Party = 1;

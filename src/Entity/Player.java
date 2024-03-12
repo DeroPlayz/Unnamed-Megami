@@ -1,28 +1,48 @@
-package Entity.Actor;
-
-import Item.Item;
-// import lib.MafLib;
+package Entity;
 
 import static Arcanum.Arcana.Fool;
 // import static Game.Main.log;
 // import static World.Map.World;
 
-import Entity.Entity;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
-// import java.text.NumberFormat;
-// import java.util.Locale;
-
-import Game.Main;
+import Item.Item;
+// import lib.MafLib;
 
 public class Player extends Entity{
+    public static Player player = new Player();
+
     private String First;                       public void setFirst(String First){this.First = First;}                 public String getFirst(){return First;}
     private String Last;                        public void setLast(String Last){this.Last = Last;}                     public String getLast(){return Last;}
     private Item[] Inventory = new Item[15];    public void setInventory(Item[] Inventory){this.Inventory = Inventory;} public Item[] getInventory(){return Inventory;}
     private double Cash;                        public void setCash(double Cash){this.Cash = Cash;}                     public double getCash(){return Cash;}
     private int Level;                          public void setLevel(int Level){this.Level = Level;}                    public int getLevel(){return Level;}
 
-    public void saveGame(){Main.saveGame();}
-    public void loadGame(){Main.loadGame();}
+    public void saveGame() throws IOException{
+        FileOutputStream FOS = new FileOutputStream("Save/Player");
+        ObjectOutputStream OOS = new ObjectOutputStream(FOS);
+        OOS.writeObject(First);
+        OOS.writeObject(Last);
+        OOS.writeObject(Inventory);
+        OOS.writeObject(Cash);
+        OOS.writeObject(Level);
+        OOS.close();
+    }
+
+    public void loadGame() throws IOException, ClassNotFoundException{
+        FileInputStream FIS = new FileInputStream("Save/Player");
+        ObjectInputStream OIS = new ObjectInputStream(FIS);
+        First = (String) OIS.readObject();
+        Last = (String) OIS.readObject();
+        Inventory = (Item[]) OIS.readObject();
+        Cash = (double) OIS.readObject();
+        Level = (int) OIS.readObject();
+        OIS.close();
+    }
     
     public Player(String First, String Last){
         super((First + " " + Last), Fool);
@@ -55,10 +75,10 @@ public class Player extends Entity{
             s += Last + ", " + First;
         }
         
-        s += "<html><br>Level: " + Level + "<html><br>Cash: $" + String.format("%.2f", Cash) + "<html><br>Inventory: ";
+        s += "\nLevel: " + Level + "\nCash: $" + String.format("%.2f", Cash) + "\nInventory: ";
         for(int i = 1; i < Inventory.length; i++){
             if(i%5 == 0){
-                s += "<html><br>";
+                s += "\n";
             }
             if(i == Inventory.length - 1){
                 s += "& ";
@@ -71,22 +91,6 @@ public class Player extends Entity{
                 s += Inventory[i] + ", ";
             }
         }
-        return "";
+        return s;
     }
-
-    // public void act(){
-    //     String response = MafLib.askString("What would you like to do?\n1. Move.\n2. Map.\n3. Settings", true);
-    //     if(response.equals("1")){
-            
-    //     }
-    //     else if(response.equals("2")){
-    //         System.out.println(World);
-    //     }
-    //     else if(response.equals("3")){
-    //         settings();
-    //     }
-    //     else{
-    //         act();
-    //     }
-    // }
 }

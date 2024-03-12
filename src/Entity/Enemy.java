@@ -1,4 +1,4 @@
-package Entity.Actor;
+package Entity;
 
 import static Combat.Skill.*;
 
@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import Arcanum.Arcana;
 
 import Combat.Skill;
-import Entity.Entity;
 
 public class Enemy extends Entity {
     
@@ -23,7 +22,7 @@ public class Enemy extends Entity {
         Luck = SMEAL[4];
     }
 
-    final Enemy Pixie = new Enemy("Pixie", Arcanum.Arcana.Lovers, 15, 15, new int[]{0, 0, 0, 0, 0}, new Skill[]{Dia});
+    public final static Enemy Pixie = new Enemy("Pixie", Arcanum.Arcana.Lovers, 15, 15, new int[]{0, 0, 0, 0, 0}, new Skill[]{Dia});
     public static Enemy eOne;
     public static Enemy eTwo;
     public static Enemy eThree;
@@ -42,7 +41,7 @@ public class Enemy extends Entity {
 
     @Override
     public String toString() {
-        String s = getName() + "(" + getArcana() + ")\n" + "Level " + getLevel() + "\nHP: " + getHP() + "/" + getMaxHP() + " | SP: " + getSP() + "/" + getMaxSP() + "Strength: " + getStrength() + "\nMagic: " + getMagic() + "\nEndurance: " + getEndurance() + "\nAgility: " + getAgility() + "\nLuck: " + getLuck();
+        String s = getName() + " (" + getArcana() + ")\n" + "Level " + getLevel() + "\nHP: " + getHP() + "/" + getMaxHP() + " | SP: " + getSP() + "/" + getMaxSP() + "\nStrength: " + getStrength() + "\nMagic: " + getMagic() + "\nEndurance: " + getEndurance() + "\nAgility: " + getAgility() + "\nLuck: " + getLuck() + "\n";
         for(int i = 0; i < getSkills().length; i++){
             s += Skills[i].toString();
         }
